@@ -1,0 +1,169 @@
+
+- Class: meta
+  Course: Data Analysis
+  Lesson: Grouped Data
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: In this lesson we will show some tools in R to analyze data given
+    in the format of a frequency table.
+
+- Class: cmd_question
+  Output: A package in R that is useful to analyze grouped data is the
+    "actuar" package. It has been installed for you, but remember that
+    if you want to use it in your analysis you will have to first install it
+    with 'install.packages("actuar")' and then enable it with
+    'library("actuar")'. Just enter this last command so that you remember
+    how to do it.
+  CorrectAnswer: library("actuar")
+  AnswerTests: swirl1cmd=library("actuar")
+  Hint: You have to enter 'library("actuar")' to enable the "actuar" package.
+
+- Class: text
+  Output: A frequency table is a compact way of presenting information about
+    a numerical variable. We also called it "grouped data" because we group
+    the different observations of the data set in classes or intervals.
+
+- Class: cmd_question
+  Output: The "actuar" package includes a data set on dental insurance
+    claims, that is presented in a number of claims per claim amount.
+    This is a "grouped data" object defined in the actuar package.
+    A grouped data object is a table, where the first column contains the
+    classes or intervals of the frequency table, the second column contains
+    the frequency, and each row is a different interval or class. Enter
+    "gdental" to see how the object looks like.
+  CorrectAnswer: gdental
+  AnswerTests: swirl1cmd=gdental
+  Hint: You have to enter "gdental" so that R will show you the object.
+
+- Class: cmd_question
+  Output: This is a very large data set that has been summarized in a
+    frequency table. To check how many cases there are in the full data
+    set, just sum the frequency. For this we can sum the "nj" variable in the
+    "gdental" grouped data object. You can sum it using the sum() function.
+    Enter the appropriate command to get the total number of cases for the
+    dental claims data set.
+  CorrectAnswer: sum(gdental$nj)
+  AnswerTests: swirl1cmd=sum(gdental$nj)
+  Hint: You have to enter "sum(gdental$nj)" to get the total number of cases
+    in the dental claim data set.
+
+- Class: text
+  Output: Despite the fact that we do not have the full detail of the dental
+    claim data set, that is the exact value of each claim for each case,
+    we can compute the basic numerical summaries directly in the frequency
+    table, and represent also a histogram and a boxplot.
+
+- Class: cmd_question
+  Output: To represent a histogram of the data, we use the "hist()"
+    function provided by the "actuar" package. The first argument of this
+    function is the grouped data object. Plot a histogram for the "gdental"
+    grouped data object.
+  CorrectAnswer: hist(gdental)
+  AnswerTests: swirl1cmd=hist(gdental)
+  Hint: You have to enter "hist(gdental)" to obtain a histogram.
+
+- Class: cmd_question
+  Output: We can also represent a boxplot. For this we need the five
+    summary numbers for the distribution. We can obtain the five
+    summary numbers using the "quantile()" function, and again the first
+    argument of this function is the grouped data object. Obtain the five
+    summary numbers for the dental claim frequency table.
+  CorrectAnswer: quantile(gdental)
+  AnswerTests: swirl1cmd=quantile(gdental)
+  Hint: Enter "quantile(gdental)" to obtain the five summary numbers.
+
+- Class: cmd_question
+  Output: R shows us the minimum (0%), the first quartile (25%),
+    the median (50%), the third quartile (75%) and the maximum (100%).
+    We can also plot a boxplot with these summary numbers. For this we
+    have to provide the result of the quantile() function to the
+    boxplot() function, and the command is "boxplot(quantile(gdental))".
+    Enter now this command to obtain a boxplot of the gdental grouped
+    object.
+  CorrectAnswer: boxplot(quantile(gdental))
+  AnswerTests: swirl1cmd=boxplot(quantile(gdental))
+  Hint: You have to enter "boxplot(quantile(gdental))".
+
+- Class: cmd_question
+  Output: Apart from the five summary numbers, we can get the mean and the
+    standard deviation for the variable in the frequency table. To obtain
+    the mean for the value of claims in the dental claim data set, the
+    command is "emm(gdental,order=1)". Enter this command now to obtain
+    the mean in this data set.
+  CorrectAnswer: emm(gdental,order=1)
+  AnswerTests: swirl1cmd=emm(gdental,order=1)
+  Hint: You have to enter "emm(gdental,order=1)" to obtain the mean for
+    dental insurance claims.
+
+- Class: cmd_question
+  Output: For the standard deviation the command is more complicated,
+    since the actuar package does not provide a direct function to compute
+    it. The command is
+    "sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)". Enter
+    now this command to compute the standard deviation for the value of
+    claims, that is a measure of the variation around the mean.
+  CorrectAnswer: sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)
+  AnswerTests: swirl1cmd=sqrt(emm(gdental,order=2)-emm(gdental,order=1)^2)
+  Hint: You have to enter "sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)" to compute the standard deviation of claims.
+
+
+- Class: cmd_question
+  Output: We will now see how to enter our own frequency table and get the
+    graphical and numerical summaries. Suppose that we are given the
+    frequency table for the test grades of a 55 students class. Type
+    "frequency_table" to see this frequency table that we have created for
+    you.
+  CorrectAnswer: frequency_table
+  AnswerTests: swirl1cmd=frequency_table
+  Hint: You have to enter "frequency_table" to see the frequency table for the
+    grades.
+
+- Class: cmd_question
+  Output: We have to enter the interval breaks and the frequency. For the
+    interval breaks, we have to enter also the lower limit. We can enter
+    the interval breaks with "cj <- c(0,20,40,60,80,100)". Try it now
+  CorrectAnswer: cj <- c(0,20,40,60,80,100)
+  AnswerTests: swirl1cmd=cj <- c(0,20,40,60,80,100)
+  Hint: You have to enter "cj <- c(0,20,40,60,80,100)". See that you enter also the
+    lower limit of the first interval, in this case "0".
+
+- Class: cmd_question
+  Output: Now we have to enter the frequency. We can do this with
+    "nj <- c(5,10,25,10,5)". Enter now the frequency.
+  CorrectAnswer: nj <- c(5,10,25,10,5)
+  AnswerTests: swirl1cmd=nj <- c(5,10,25,10,5)
+  Hint: You have to enter "nj <- c(5,10,25,10,5)" to enter the frequency of our
+    frequency table.
+
+- Class: cmd_question
+  Output: You have finally to create the grouped data object so that you can
+    use the functions of the actuar package to obtain the numerical and
+    graphical summaries for our frequency table. If you want to call your
+    object "x", you can create it with
+    "x <- grouped.data(Group=cj, Frequency=nj)". Try it now.
+  CorrectAnswer: x <- grouped.data(Group=cj, Frequency=nj)
+  AnswerTests: swirl1cmd=x <- grouped.data(Group=cj, Frequency=nj)
+  Hint: You have to enter "x <- grouped.data(Group=cj, Frequency=nj)" to
+    create the grouped data object to obtain numerical and graphical summaries.
+
+- Class: cmd_question
+  Output: Now that you have your data, you can use all the functions that we
+    introduced before to obtain graphical and numerical summaries for your
+    frequency table of grades. Try to obtain now a histogram based on this
+    frequency table, remember that the command is "hist(group_object)",
+    where "group_object" is the name of the grouped data object you just
+    created.
+  CorrectAnswer: hist(x)
+  AnswerTests: swirl1cmd=hist(x)
+  Hint: You have to enter "hist(x)" to create a histogram based on the
+    frequency table for grades in the test.
+
+- Class: text
+  Output: Using the other functions that we presented in this lesson, you
+    can obtain the numerical summaries (mean, standard deviation, five
+    summary numbers) or also the boxplot based on the data of this frequency
+    table. Here we finish this lesson.

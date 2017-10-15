@@ -1,0 +1,251 @@
+
+- Class: meta
+  Course: Data Analysis
+  Lesson: Data Transformation
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: Units of measure are a very important issue in any real world
+    data set. For numerical variables, it is important to know how
+    are variables measured, and what is the meaning of the numbers
+    that we see. In this lesson we will deal with the issue of units
+    of measure and with the implications of changing them.
+
+- Class: cmd_question
+  Output: In this unit we will work with an example data set (a data frame is
+    the way we call them in R). The data frame has only one numerical variable,
+    called "euros", and it is the amount in euros (measured up to the cents)
+    that 20 French students prepared as cash to take to a trip to London. The
+    data frame is called "trip". Take a look at it using the head() function,
+    which shows you the first cases of the data set.
+  CorrectAnswer: head(trip)
+  AnswerTests: swirl1cmd=head(trip)
+  Hint: You have to enter "head(trip)" to see the first cases of the "trip"
+    data frame.
+
+- Class: cmd_question
+  Output: We have loaded for you the nice psych package that has the describe()
+    function, that gives numerical summaries for a numerical variable. Get the
+    numerical summaries now for the "euro" variable. Once you get them,
+    take note, writing them somewhere where you can check them later,
+    of the mean, the median, standard deviation, skewness and kurtosis.
+  CorrectAnswer: describe(trip$euros)
+  AnswerTests: swirl1cmd=describe(trip$euros)
+  Hint: You have to enter "describe(trip$euros)" to get numerical summaries for the
+    trip data set.
+
+- Class: text
+  Output: A linear transformation is a transformation that we apply
+    to a variable x, to obtain a new variable y, defined as y=(x-a)/b, where
+    a and b are constants (and b > 0). The constant "a" we call a change of
+    origin, and the constant "b" we call a change of scale.
+
+- Class: mult_question
+  Output: Suppose that each student in the trip has to pay 50 euros before
+    boarding the plane as an insurance fee. Think of this as a change of
+    origin of the "euros" variable. What would be the value of "a" in this case?
+  AnswerChoices: 50; -50; 0; 1
+  CorrectAnswer: 50
+  AnswerTests: word= 50
+  Hint: We defined a change of origin as "x - a". Here each student is
+    paying 50 for the insurance fee, so if they have x euros, now they have
+    50 less. What is the value of a?
+
+- Class: mult_question
+  Output: At the moment of the trip, the exchange of the Euro with respect
+    to the British Pound was 1 Euro = 0.89 Pounds. Suppose that the students
+    think (before paying the insurance fee), how much pounds they would
+    get if they exchange their euros to pounds. Think of this as a change
+    of scale of the "euros" variable. What would be the value of "b"
+    (rounded to two decimal points) in this change of scale?
+  AnswerChoices: 0.89; 1.12; 1
+  CorrectAnswer: 1.12
+  AnswerTests: word= 1.12
+  Hint: We defined a change of scale as "x/b". If you have 1 euro, and you
+    transformed it to pounds (1/b), you get 0.89 pounds. What is the value
+    of b (rounded to two decimal points)?
+
+- Class: mult_question
+  Output: Now we consider both transformations at the same time. That is,
+    before boarding, the French students pay 50 as an insurance fee, and when
+    they arrive to London with the cash left they change the euros to
+    pounds. How would you write this as a linear transformation?
+  AnswerChoices: (x - 50)/1.12; (x/1.12 - 50); (x - 50)/0.89
+  CorrectAnswer: (x - 50)/1.12
+  AnswerTests: word=(x - 50)/1.12
+  Hint: Think that first they pay 50 euros (x-50) and then they convert
+    the remaining amount to pounds, so they have to divide what they
+    have in euros by 1.12.
+
+- Class: cmd_question
+  Output: Let's obtain now a new data set (a new data frame) after students
+    have paid the 50 euros and have converted their cash into pounds (that
+    is, they have applied the linear transformation). Enter a command to
+    convert the "euros" variable and call the new variable "pounds".
+  CorrectAnswer: pounds <- (trip$euros - 50)/1.12
+  AnswerTests: swirl1cmd= pounds <- (trip$euros - 50)/1.12
+  Hint: You have to enter "pounds <- (trip$euros - 50)/1.12", this will apply
+    our linear transformation to the "euros" variable.
+
+- Class: cmd_question
+  Output: Let's create now a new data frame with the transformed "euros"
+    variable, that is the "pounds" variable. Use for this the
+    data.frame() function. Call the new data frame "new_trip".
+  CorrectAnswer: new_trip <- data.frame(pounds)
+  AnswerTests: swirl1cmd=new_trip <- data.frame(pounds)
+  Hint: You have to enter "new_trip <- data.frame(pounds)" to create the new
+    data frame.
+
+- Class: cmd_question
+  Output: Let's look now at the first cases of the "new_trip" data frame that
+    we created. Enter the appropriate command.
+  CorrectAnswer: head(new_trip)
+  AnswerTests: swirl1cmd= head(new_trip)
+  Hint: You have to enter "head(new_trip)" to see the first cases of the
+   new data frame that we have created.
+
+- Class: cmd_question
+  Output: As you can see, the "pounds" values show up to 4 decimal positions.
+    We would like to reduce it to two decimal positions, since we are dealing
+    with pounds measured up to the pence. For this we can
+    use the "round()" function, which takes two arguments. The first one
+    is an R object that can be rounded, for instance a numerical vector, and the
+    second one is the number of decimal positions we want. Enter now
+    the command to round the "pounds" variable to two decimal positions, and
+    assign the result to the same variable in the same data frame,
+    "new_trip$pounds".
+  CorrectAnswer: new_trip$pounds <- round(pounds,2)
+  AnswerTests: swirl1cmd= new_trip$pounds <- round(pounds,2)
+  Hint: You have to enter "new_trip$pounds <- round(pounds,2)" to
+    round the pound data to two decimal position, and to save the results
+    under the same  data frame with the same variable name.
+
+- Class: cmd_question
+  Output: Use now the head() function again to check that the data has
+    indeed been rounded to two decimal points.
+  CorrectAnswer: head(new_trip)
+  AnswerTests: swirl1cmd=head(new_trip)
+  Hint: You have to enter "head(new_trip)" to check the first cases of pounds.
+
+- Class: cmd_question
+  Output: We can now obtain the numerical summaries for the "pounds" variable,
+    using the describe() function of the psych package. Apply this
+    function to obtain the main numerical summaries for the pounds variable.
+    Take note, writing them somewhere else, of the mean and the standard
+    deviation as we are going to use them later.
+  CorrectAnswer: describe(new_trip$pounds)
+  AnswerTests: swirl1cmd= describe(new_trip$pounds)
+  Hint: You have to enter "describe(new_trip$pounds)" to obtain the numerical
+    summaries of the "pounds" variable in the "new_trip" data set.
+
+- Class: mult_question
+  Output: With respect to the "euros" variable, how do you think the numerical
+    summaries have changed in the "pounds" variable? Which numerical summaries
+    have changed?
+  AnswerChoices: the mean, the median, the standard deviation, but not the skweness or the kurtosis; the mean, the median, the standard deviation, the skewness and the kurtosis; the skewness and the kurtosis but not the mean, the median and the standard deviation; the mean and the standard deviation, but not the median, the skewness and the kurtosis
+  CorrectAnswer: the mean, the median, the standard deviation, but not the skweness or the kurtosis
+  AnswerTests: word=the mean, the median, the standard deviation, but not the skweness or the kurtosis
+  Hint: Measures of position are affected by the change of origin and scale,
+    while measure of spread are affected by changes of scale. Measures of
+    form are not affected by linear transformations, and therefore do not
+    change.
+
+- Class: text
+  Output: Now go back to the numerical summaries that you took note before
+    of the "euros" variable and compare them with the numerical summaries
+    of the "pounds" to confirm the statement of the previous question.
+
+- Class: text
+  Output: We can compute also the numerical summaries for the pounds variable
+    using the numerical summaries of the euros variable. For instance
+    according to what we said before, we know that mean_pounds =
+    (mean_euros - 50)/1.12, median_pounds = (median_euros - 50)/1.12, while
+    std_dev_pounds = std_dev_euros/1.12 (measures of spread are not
+    affected by the change of origin), and measures of form do not change
+    with the linear transformation.
+
+- Class: cmd_question
+  Output: Confirm now how the linear transformation affects the mean by
+    taking the mean of the euros variable you wrote down before, and
+    applying to it the linear transformation we have been working with.
+  CorrectAnswer: (313.93 - 50)/1.12
+  AnswerTests: swirl1cmd= (313.93 - 50)/1.12
+  Hint: The mean of the euros variable was 313.93, and we have to
+    apply the linear transformation (313.93 - 50)/1.12
+
+- Class: text
+  Output: You can compare now the results of the computation of the previous
+     question with the mean for the pounds variable you took note some
+     questions ago. They should be the same.
+
+- Class: cmd_question
+  Output: Confirm now how the linear transformation affects the standard
+    deviation by taking the standard deviation of the euros variable you
+    wrote down before, and applying to it the linear transformation we have been
+    working with.
+  CorrectAnswer: 157.25/1.12
+  AnswerTests: swirl1cmd= 157.25/1.12
+  Hint: The standard deviation of the euros variable was 157.25, and the
+    standard deviation, being a measure of spread, is only affected by the
+    change of scale, so we get the standard deviation in pounds by doing
+    157.25/1.12.
+
+- Class: text
+  Output: The results that we just described for the mean and the standard
+    deviation, which are true for all measures of position and spread, as
+    well as the form not changing, is only valid for linear transformations.
+    For non-linear transformations it is not true that we can predict
+    the values of the new mean, standard deviation or other measures, and
+    that the form does not change. Actually, some non-linear transformations
+    are used to change the form of the distribution. For instance
+    the logarithmic transformation, which consists of taking natural logs
+    for all values of the data set, new_data = log(old_data), is used
+    sometimes to reduce the skewness of a distribution, that is to change
+    its form.
+
+- Class: cmd_question
+  Output: Use the hist() function to obtain a histogram for the euros
+    variable.
+  CorrectAnswer: hist(trip$euros)
+  AnswerTests: swirl1cmd= hist(trip$euros)
+  Hint: You have to enter "hist(trip$euros)" to obtain the histogram for the
+    euros variable.
+
+- Class: mult_question
+  Output: The histogram for the euros variable is
+  AnswerChoices: skewed to the right; skewed to the left; symmetrical
+  CorrectAnswer: skewed to the right
+  AnswerTests: word=skewed to the right
+  Hint: As frequency is concentrated in low values and extend with less
+    frequency to the high values, we have skewness to the right also
+    called positive skewness.
+
+- Class: cmd_question
+  Output: We can now try to use the logarithmic transformation to see
+    if we can get a more symmetrical distribution. Apply the log()
+    function to the euros variable and assign the result to a new
+    variable called log_euros.
+  CorrectAnswer: log_euros <- log(trip$euros)
+  AnswerTests: swirl1cmd= log_euros <- log(trip$euros)
+  Hint: You have to enter "log_euros <- log(trip$euros)" to transform
+    the original euros values to the natural log of those values.
+
+- Class: cmd_question
+  Output: Obtain now a histogram of the logarithmic transformation of the
+    euros variable, that is for the log_euros variable.
+  CorrectAnswer: hist(log_euros)
+  AnswerTests: swirl1cmd= hist(log_euros)
+  Hint: You have to enter "hist(log_euros)" to obtain the new histogram.
+
+- Class: text
+  Output: As you can see, if we transform the euros variable, which we saw
+    as skewed to the right, using the logarithmic transformation, we get
+    a more symmetrical distribution.
+
+- Class: text
+  Output: We have finished this lesson. Now you know how to change the units
+    of measure of your numerical variables, and what happens to the main
+    numerical summaries for the distribution of your variables if you do so.

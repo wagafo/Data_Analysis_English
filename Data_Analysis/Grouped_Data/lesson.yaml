@@ -99,6 +99,10 @@
   Hint: You have to enter "emm(gdental,order=1)" to obtain the mean for
     dental insurance claims.
 
+- Class: video
+  Output: Would you like to watch a video on how to compute the mean in grouped data now?
+  VideoLink: https://youtu.be/z_CBPRrEJUw
+
 - Class: cmd_question
   Output: For the standard deviation the command is more complicated,
     since the actuar package does not provide a direct function to compute

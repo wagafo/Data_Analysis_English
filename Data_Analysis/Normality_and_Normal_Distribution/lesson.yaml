@@ -122,7 +122,7 @@
 - Class: cmd_question
   Output: We have prepared a table for you with the approximate frequency
     you expect to have in the normal distribution
-    according to the normal distribution. That is why we call it "expected
+    according to the 68-95-99.7% rule. That is why we call it "expected
     frequency". Check the table entering "table_normal" now.
   CorrectAnswer: table_normal
   AnswerTests: omnitest(correctExpr='table_normal')
@@ -134,22 +134,12 @@
     distribution on these same intervals based on exact multiples of the
     standard deviation above and below the mean. For instance to check
     which relative frequency we observe for points smaller than m - 3s.
-    Let's first obtain the value for this breakpoint and call it b1,
-    with b1 <- m - 3*s.
-  CorrectAnswer: b1 <- m - 3*s
-  AnswerTests: omnitest(correctExpr='b1 <- m - 3*s')
-  Hint: You have to enter "b1 <- m - 3*s"
+    To check this, you can do it with
+    sum(points < m - 3*s) / length(points). Try it!
+  CorrectAnswer: sum(points < m - 3*s) / length(points)
+  AnswerTests: omnitest(correctExpr='sum(points < m - 3*s) / length(points)')
+  Hint: You have to enter "sum(points < m - 3*s) / length(points)".
 
-- Class: cmd_question
-  Output: Now we can check
-    which relative frequency we observe for points smaller than m - 3s
-    with sum(points < b1) / length(points). Try it!
-  CorrectAnswer: sum(points < b1) / length(points)
-  AnswerTests: omnitest(correctExpr='sum(points < b1) / length(points)')
-  Hint: You have to enter "sum(points < b1) / length(points)" to check
-    the relative frequency of thee points variable for cases smaller than
-    the mean minus 3 standard deviations, that is m - 3*s.
-    
 - Class: cmd_question
   Output: This is telling us that for the interval "m-3*s" there is
     an observed relative frequency of 0%. The expected relative frequency was
@@ -192,7 +182,7 @@
   Output: We can check now the "expected" and "observed" columns. We can see
     that the percentages are not very different. Together with the other checks
     that we performed, graphically and with the numerical summaries, we can
-    conclude that the distribution of points scored by Gassol in his first
+    conclude that the distribution of points scored by Gasol in his first
     rookie season approximately follow a normal distribution.
     
 - Class: cmd_question
@@ -203,8 +193,9 @@
     pnorm(2,lower.tail= FALSE). Try it now.
   CorrectAnswer: pnorm(2,lower.tail= FALSE)
   AnswerTests: omnitest(correctExpr='pnorm(2,lower.tail= FALSE)')
-  Hint: Enter the command "pnorm(2,lower.tail= FALSE)" to check a value
-    in the standard normal distribution to the right.
+  Hint: Enter the command "pnorm(2,lower.tail= FALSE)" to check the
+    percentage of cases 
+    in the standard normal distribution to the right of a given value.
 
 - Class: cmd_question
   Output: To check a value to the left we need to use "lower.tail=TRUE".
@@ -213,7 +204,7 @@
   CorrectAnswer: pnorm(0,lower.tail=TRUE)
   AnswerTests: omnitest(correctExpr='pnorm(0,lower.tail=TRUE)')
   Hint: Enter the command "pnorm(0,lower.tail=TRUE)" to get the relative
-    frequency to the right of z=0 in the standard normal distribution.
+    frequency to the left of z=0 in the standard normal distribution.
 
 - Class: cmd_question
   Output: We got 0.5 exactly because z=0 is the median of the standard normal

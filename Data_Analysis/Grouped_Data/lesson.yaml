@@ -1,6 +1,6 @@
 
 - Class: meta
-  Course: Data Analysis
+  Course: Data analysis
   Lesson: Grouped Data
   Author: Walter Garcia-Fontes
   Type: Standard
@@ -19,7 +19,7 @@
     'library("actuar")'. Just enter this last command so that you remember
     how to do it.
   CorrectAnswer: library("actuar")
-  AnswerTests: swirl1cmd=library("actuar")
+  AnswerTests: omnitest(correctExpr='library("actuar")')
   Hint: You have to enter 'library("actuar")' to enable the "actuar" package.
 
 - Class: text
@@ -36,7 +36,7 @@
     the frequency, and each row is a different interval or class. Enter
     "gdental" to see how the object looks like.
   CorrectAnswer: gdental
-  AnswerTests: swirl1cmd=gdental
+  AnswerTests: omnitest(correctExpr='gdental')
   Hint: You have to enter "gdental" so that R will show you the object.
 
 - Class: cmd_question
@@ -47,7 +47,7 @@
     Enter the appropriate command to get the total number of cases for the
     dental claims data set.
   CorrectAnswer: sum(gdental$nj)
-  AnswerTests: swirl1cmd=sum(gdental$nj)
+  AnswerTests: omnitest(correctExpr='sum(gdental$nj)')
   Hint: You have to enter "sum(gdental$nj)" to get the total number of cases
     in the dental claim data set.
 
@@ -63,7 +63,7 @@
     function is the grouped data object. Plot a histogram for the "gdental"
     grouped data object.
   CorrectAnswer: hist(gdental)
-  AnswerTests: swirl1cmd=hist(gdental)
+  AnswerTests: omnitest(correctExpr='hist(gdental)')
   Hint: You have to enter "hist(gdental)" to obtain a histogram.
 
 - Class: cmd_question
@@ -73,7 +73,7 @@
     argument of this function is the grouped data object. Obtain the five
     summary numbers for the dental claim frequency table.
   CorrectAnswer: quantile(gdental)
-  AnswerTests: swirl1cmd=quantile(gdental)
+  AnswerTests: omnitest(correctExpr='quantile(gdental)')
   Hint: Enter "quantile(gdental)" to obtain the five summary numbers.
 
 - Class: cmd_question
@@ -85,7 +85,7 @@
     Enter now this command to obtain a boxplot of the gdental grouped
     object.
   CorrectAnswer: boxplot(quantile(gdental))
-  AnswerTests: swirl1cmd=boxplot(quantile(gdental))
+  AnswerTests: omnitest(correctExpr='boxplot(quantile(gdental))')
   Hint: You have to enter "boxplot(quantile(gdental))".
 
 - Class: cmd_question
@@ -95,7 +95,7 @@
     command is "emm(gdental,order=1)". Enter this command now to obtain
     the mean in this data set.
   CorrectAnswer: emm(gdental,order=1)
-  AnswerTests: swirl1cmd=emm(gdental,order=1)
+  AnswerTests: omnitest(correctExpr='emm(gdental,order=1)')
   Hint: You have to enter "emm(gdental,order=1)" to obtain the mean for
     dental insurance claims.
 
@@ -111,7 +111,7 @@
     now this command to compute the standard deviation for the value of
     claims, that is a measure of the variation around the mean.
   CorrectAnswer: sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)
-  AnswerTests: swirl1cmd=sqrt(emm(gdental,order=2)-emm(gdental,order=1)^2)
+  AnswerTests: omnitest(correctExpr='sqrt(emm(gdental,order=2)-emm(gdental,order=1)^2)')
   Hint: You have to enter "sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)" to compute the standard deviation of claims.
 
 
@@ -122,7 +122,7 @@
     "frequency_table" to see this frequency table that we have created for
     you.
   CorrectAnswer: frequency_table
-  AnswerTests: swirl1cmd=frequency_table
+  AnswerTests: omnitest(correctExpr='frequency_table')
   Hint: You have to enter "frequency_table" to see the frequency table for the
     grades.
 
@@ -131,7 +131,7 @@
     interval breaks, we have to enter also the lower limit. We can enter
     the interval breaks with "cj <- c(0,20,40,60,80,100)". Try it now
   CorrectAnswer: cj <- c(0,20,40,60,80,100)
-  AnswerTests: swirl1cmd=cj <- c(0,20,40,60,80,100)
+  AnswerTests: omnitest(correctExpr='cj <- c(0,20,40,60,80,100)')
   Hint: You have to enter "cj <- c(0,20,40,60,80,100)". See that you enter also the
     lower limit of the first interval, in this case "0".
 
@@ -139,7 +139,7 @@
   Output: Now we have to enter the frequency. We can do this with
     "nj <- c(5,10,25,10,5)". Enter now the frequency.
   CorrectAnswer: nj <- c(5,10,25,10,5)
-  AnswerTests: swirl1cmd=nj <- c(5,10,25,10,5)
+  AnswerTests: omnitest(correctExpr='nj <- c(5,10,25,10,5)')
   Hint: You have to enter "nj <- c(5,10,25,10,5)" to enter the frequency of our
     frequency table.
 
@@ -150,7 +150,7 @@
     object "x", you can create it with
     "x <- grouped.data(Group=cj, Frequency=nj)". Try it now.
   CorrectAnswer: x <- grouped.data(Group=cj, Frequency=nj)
-  AnswerTests: swirl1cmd=x <- grouped.data(Group=cj, Frequency=nj)
+  AnswerTests: omnitest(correctExpr='x <- grouped.data(Group=cj, Frequency=nj)')
   Hint: You have to enter "x <- grouped.data(Group=cj, Frequency=nj)" to
     create the grouped data object to obtain numerical and graphical summaries.
 
@@ -162,7 +162,7 @@
     where "group_object" is the name of the grouped data object you just
     created.
   CorrectAnswer: hist(x)
-  AnswerTests: swirl1cmd=hist(x)
+  AnswerTests: omnitest(correctExpr='hist(x)')
   Hint: You have to enter "hist(x)" to create a histogram based on the
     frequency table for grades in the test.
 

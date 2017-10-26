@@ -1,0 +1,567 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Two numerical variables
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: 'In this tutorial we will present the main techniques for the
+    analysis of two numerical variables with R. We will work with a data set
+    that we have already loaded for you. It is a data set on the results of
+    21 students in a midterm and final exam. It has three variables:
+    1) observation number, 2) midterm grade and 3) final grade. The
+    data frame is called "exam".'
+
+- Class: cmd_question
+  Output: Use now the head() function to check the first few observations,
+    as well as the name of the variables included in the data frame.
+  CorrectAnswer: head(exam)
+  AnswerTests: omnitest(correctExpr='head(exam)')
+  Hint: You have to enter "head(exam)" to see the first cases of the variables
+    included in the data frame "exam".
+
+- Class: mult_question
+  Output: In this case, what do you think is more reasonable?
+  AnswerChoices: the final is the dependent variable and the midterm is
+   the explanatory variable; the midterm is the dependent variable and
+   the final is the explanatory variable
+  CorrectAnswer: the final is the dependent variable and the midterm is
+   the explanatory variable
+  AnswerTests: omnitest(correctVal='the final is the dependent variable and the midterm is the explanatory variable')
+  Hint: The midterm grade can be used to predict the final grade.
+
+- Class: cmd_question
+  Output: Since we are going to work for a while with the variables of
+    this data set, it is convenient that we assign them to variables
+    in the current workspace of R, so that we do not have to refer to
+    them all the time using the name of the data frame. So we will
+    start assigning the final variable with "final <- exam$final". Enter
+    this command now.
+  CorrectAnswer: final <- exam$final
+  AnswerTests: omnitest(correctExpr='final <- exam$final')
+  Hint: You have to enter "final <- exam$final" and now you will have a
+    variable called final in the current workspace, so you can refer
+    directly to it in commands without having to use "exam$final".
+
+- Class: cmd_question
+  Output: Assign now the midterm variable in the exam data frame, to
+    a variable called also midterm in the current workspace, similarly
+    to what you did with the final variable.
+  CorrectAnswer: midterm <- exam$midterm
+  AnswerTests: omnitest(correctExpr='midterm <- exam$midterm')
+  Hint: You have to enter "midterm <- exam$midterm" and now you will have a
+    variable called final in the current workspace, so you can refer
+    directly to it in commands without having to use "exam$midterm".
+
+- Class: text
+  Output: Before trying to understand the relation between the variables,
+    we have to understand the distribution of each variable separately.
+    To do this we have the usual tools in R, but if we wanted to perform
+    an exhaustive analysis we should use all the tools that we learnt for this.
+    But let's try to understand the main patterns of the distribution for
+    the midterm and final exam.
+
+- Class: cmd_question
+  Output: Use the boxplot() function to get a view of the distribution of
+    the midterm variable. Remember that you can use "midterm" directly
+    without having to refer to the data frame, since we have now a variable
+    in the current R workspace called "midterm".
+  CorrectAnswer: boxplot(midterm)
+  AnswerTests: omnitest(correctExpr='boxplot(midterm)')
+  Hint: You have to enter "boxplot(midterm)" to get a view of the
+    distribution of the midterm variable.
+
+- Class: mult_question
+  Output: According to what we see for the distribution of the midterm
+    variable using the boxplot, we can say that the distribution
+  AnswerChoices: is skewed to the right and has an outlier; is skewed to the
+    left and has an outlier; is symmetrical and does not have outliers
+  CorrectAnswer: is skewed to the right and has an outlier
+  AnswerTests: omnitest(correctVal='is skewed to the right and has an outlier')
+  Hint: Check to what side the boxplot is extended, and if there are any
+    cases marked with a small circle.
+
+- Class: cmd_question
+  Output: Check now the distribution of the final variable, again using
+    the boxplot and using the variable "final" in the current workspace.
+  CorrectAnswer: boxplot(final)
+  AnswerTests: omnitest(correctExpr='boxplot(final)')
+  Hint: You have to enter "boxplot(final)" to get a view of the
+    distribution of the midterm variable.
+
+- Class: mult_question
+  Output: From what you see in the boxplot for the final variable, you can
+    say that
+  AnswerChoices: the distribution for the final grade is more symmetrical and also has an outlier; the distribution for the final grade is skewed to the right and does not have outliers
+  CorrectAnswer: the distribution for the final grade is more symmetrical and also has an outlier
+  AnswerTests: omnitest(correctVal='the distribution for the final grade is more symmetrical and also has an outlier')
+  Hint: Check if the boxplot has some extension to either side and if there
+    are cases marked with a small circle.
+
+- Class: text
+  Output: You should always perform a thorough analysis of each variable
+   separately before jumping into the analysis of the relations between them.
+
+- Class: cmd_question
+  Output: Once you understand these separate distributions, you can start
+   analyzing the possible relations among them.
+   The first check for the relation between two numerical variables is
+   to check the scatterplot between them.
+   To get a scatter plot between
+   the variable Y in the vertical axis, X in the horizontal axis,
+   "plot(Y~X)" is an appropriate command in R. Try it.
+  CorrectAnswer: plot(final~midterm)
+  AnswerTests: omnitest(correctExpr='plot(final~midterm)')
+  Hint: You have to enter "plot(final~midterm)" to get a scatterplot of the
+    final variable with respect to the midterm variable.
+
+- Class: mult_question
+  Output: The scatterplot gives us a visual idea of the possible relationship
+    between the two variables. In this case what do you think is the best
+    description?
+  AnswerChoices: positive not too strong linear relation; positive very strong linear relation; negative not too strong linear relation; no linear relation
+  CorrectAnswer: positive not too strong linear relation
+  AnswerTests: omnitest(correctVal='positive not too strong linear relation')
+  Hint: Look at the pattern of the points cloud and if it is upward or
+    downward sloping.
+
+- Class: figure
+  Output: The scatterplot allows also to identify outliers. Outliers are
+   cases with a large different with respect to the mean of either variable
+   or both. We have marked the outliers for you in the scatterplot. We have
+   also plotted a horizontal line equal to the mean of the final, and a
+   vertical line equal to the mean of the midterm.
+  Figure: figure_outliers.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: A measure of the possible
+   linear association of two variables is the correlation coefficient.
+   To get the correlation between the X and Y variables in R, the command
+   is cor(X,Y). Use now this command to check the linear correlation
+   between the "midterm" and "final" variable.
+  CorrectAnswer: cor(midterm,final)
+  AnswerTests: any_of_exprs('cor(midterm,final)','cor(final,midterm)')
+  Hint: You have to enter "cor(midterm,final)" to get the linear correlation
+   between the midterm and final grade variables. The order does not matter,
+   you can also write "cor(final,midterm").
+
+- Class: mult_question
+  Output: You should have gotten 0.64029 as the correlation coefficient. This is   telling you that there is
+  AnswerChoices: positive not too strong linear correlation; positive very strong linear correlation; negative not too strong linear correlation; no linear correlation
+  CorrectAnswer: positive not too strong linear correlation
+  AnswerTests: omnitest(correctVal='positive not too strong linear correlation')
+  Hint: Look at the sign of the correlation coefficient and how far away it
+    is from 1 or -1.
+
+- Class: cmd_question
+  Output: The other main tool to describe the relation between the two
+   variables is the regression line. We can ask R to compute the constant
+   and the slope for the regression line between the dependent variable Y
+   and the explanatory variable X with lm(Y~X). Try it now with the midterm
+   and final variable, and assign the result to an object called "fit".
+  CorrectAnswer: fit <- lm(final~midterm)
+  AnswerTests: omnitest(correctExpr='fit <- lm(final~midterm)')
+  Hint: You have to enter "fit <- cor(midterm,final)" to compute the
+   regression line and save the results in an object called fit.
+
+- Class: cmd_question
+  Output: To check the values of constant and the coefficient, you just
+   have to enter now the name of the object that we just created. Do it now.
+  CorrectAnswer: fit
+  AnswerTests: omnitest(correctExpr='fit')
+  Hint: You have to enter "fit" to show the constant and the slope of the
+   regression line
+
+- Class: mult_question
+  Output: The slope is showing us
+  AnswerChoices: that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final; that for each point a student gets in the final, it is predicted he or she got 1.12 points in the midterm
+  CorrectAnswer: that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final
+  AnswerTests: omnitest(correctVal='that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final')
+  Hint: The regression line predicts the effect of the explanatory variable
+   (grade in the midterm) on the dependent variable (grade in the final).
+
+- Class: cmd_question
+  Output: It is nice to plot the regression line in the scatterplot. For this
+   plot again the scatterplot with the "plot(Y~X)" command.
+  CorrectAnswer: plot(final~midterm)
+  AnswerTests: omnitest(correctExpr='plot(final~midterm)')
+  Hint: You have to enter "plot(final~midterm)" to get the scatterplot between
+   final and midterm.
+
+- Class: cmd_question
+  Output: And now, to get the regression line in the scatterplot, we use
+   the command "abline(fit)". Try it now.
+  CorrectAnswer: abline(fit)
+  AnswerTests: omnitest(correctExpr='abline(fit)')
+  Hint: You have to enter "abline(fit)" to regression line in the scatterplot
+   between final and midterm.
+
+- Class: cmd_question
+  Output: One of the main objectives of regression analysis, is to predict
+    the value of the dependent variable given values of the explanatory
+    variable. What is the prediction of the final exam grade for a student
+    who got a grade equal to 70 in the midterm? We can compute the prediction
+    directly by using the estimated constant (-4.953) and slope(1.127).
+    Enter the appropriate formula to compute this prediction.
+  CorrectAnswer: -4.953+70*1.127
+  AnswerTests: any_of_exprs('-4.953+70*1.127','-4.953+1.127*70','70*1.127-4.953','1.127*70-4.953')
+  Hint: You have to enter "-4.953+70*1.127" to predict the final grade of
+    a student who got a grade equal to 70 in the midterm.
+
+- Class: cmd_question
+  Output: You can predict also using the predict() function of R. For this
+    you have to enter the values of the explanatory variable in a vector.
+    For instance to predict for the same case as before, the command
+    is "predict(fit,data.frame(midterm=70))". Try it now.
+  CorrectAnswer: predict(fit,data.frame(midterm=70))
+  AnswerTests: omnitest(correctExpr='predict(fit,data.frame(midterm=70))')
+  Hint: You have to enter "predict(fit,data.frame(midterm=70))" to predict
+    the final grade of a student who got a grade equal to 70 in the midterm.
+
+- Class: cmd_question
+  Output: We can get a more complete set of regression results with
+    the summary() function of R. Recall that we have saved the regression
+    result in an object called "fit". Use now this object as an argument
+    of the summary() function to have R show you more results of the
+    regression.
+  CorrectAnswer: summary(fit)
+  AnswerTests: omnitest(correctExpr='summary(fit)')
+  Hint: You have to enter "summary(fit)" to have R show more results of the
+    regression.
+
+- Class: text
+  Output: In the results shown by R you can see again the regression
+    coefficients under "Estimate". You can also get the value for coeefficient
+    of determination (also called R-squared), which is equal to 0.41. and
+    some statistics for the regression residuals.
+
+- Class: mult_question
+  Output: The value of the R-squared is telling you that
+  AnswerChoices: the midterm grade explains 41% of the variation of the
+    final grades; the final grades explains 41% of the variation of
+    the midterm grades
+  CorrectAnswer: the midterm grade explains 41% of the variation of the
+    final grades
+  AnswerTests: omnitest(correctVal='the midterm grade explains 41% of the variation of the final grades')
+  Hint: The R-squared tells you the percentage of the variation of the final
+    grade that you can explain with the variation of the midterm grade.
+
+- Class: cmd_question
+  Output: Another important piece of diagnosis of the regression line is
+    the residual plot. It allows you to identify anomalies in the relation
+    between the two variables, such as non-linearities or increasing spread.
+    To plot the residuals, we first need to compute them. We can do this
+    with the resid() function of R. Use it with the "fit" object as
+    argument, and assign the results to a new object called fit.res.
+  CorrectAnswer: fit.res <- resid(fit)
+  AnswerTests: omnitest(correctExpr='fit.res <- resid(fit)')
+  Hint: You have to enter "fit.res <- resid(fit)" to compute the residuals
+    and assign the results to a new object called fit.res.
+
+- Class: cmd_question
+  Output: We can now plot the residuals. We will also add a label to the
+    vertical axis with "ylab" and a title to the plot with "main". The command
+    is plot(fit.res~midterm, ylab="Residuals", main="Residual Plot"). Try
+    it now.
+  CorrectAnswer: plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")
+  AnswerTests: omnitest(correctExpr='plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")')
+  Hint: You have to enter "plot(fit.res~midterm, ylab="Residuals", main="Residual Plot")" to draw the regression plot.
+
+- Class: cmd_question
+  Output: It is also convenient to plot
+    a horizontal line at 0, as there are positive and negative residuals,
+    and for the regression analysis to be appropriate, the residuals should
+    be distributed above and below this regression line without any
+    specific pattern. We will plot a horizontal line with abline(0,0). Do
+    it now.
+  CorrectAnswer: abline(0,0)
+  AnswerTests: omnitest(correctExpr='abline(0,0)')
+  Hint: You have to enter "abline(0,0)" to plot a horizontal line.
+
+- Class: cmd_question
+  Output: Another tool to check the residuals is just the histogram. The
+    histogram for the residuals should show a distribution similar
+    to the normal distribution. Get histogram for the residuals, remember
+    that we saved them in an object called "fit.res".
+  CorrectAnswer: hist(fit.res)
+  AnswerTests: omnitest(correctExpr='hist(fit.res)')
+  Hint: You have to enter "hist(fit.res)" to plot a horizontal line.
+
+- Class: figure
+  Output: Still another piece of diagnosis of the regression analysis is
+    the identification of influential observations. These are observations
+    that have an abnormal influence on the results that we observe, that is,
+    without them the effect of the explanatory variable on the dependent
+    variable changes significantly. Possible influential observations
+    are cases with a large difference with respect to the mean of the
+    explanatory variable. Remember that we had identify 3 outliers at
+    the beginning of this lesson. We have plotted the scatterplot with
+    the marked outliers again for you.
+  Figure: figure_outliers.R
+  FigureType: new
+
+
+- Class: cmd_question
+  Output: To analyze influential cases we have to identify them by knowing
+    the case number, eliminate them, and see if the slope coefficient changes
+    or not. A useful command to identify outliers is the identify() function
+    of R. Entering identify(Y~X) you get a scatterplot between Y and X. You
+    can click on the different cases you want to identify, and once you
+    press "Esc" (the escape key), R will show you the case number (observation
+    number) of those cases on the graph, that is the row in the data
+    frame where you can find those cases. Pressing Esc again R will print
+    the case numbers and return you to the tutorial.
+    Enter the identify() function with our dependent
+    and explanatory variables, then click on the three outliers,
+    and finally press Esc two times to return to the tutorial and have R show
+    you the cases.
+  CorrectAnswer: identify(final~midterm)
+  AnswerTests: omnitest(correctExpr='identify(final~midterm)')
+  Hint: You have to enter "identify(final~midterm)", click in the plot on
+    the outliers, and then press "Esc".
+
+- Class: text
+  Output: As you can see, R has identified these cases as cases number
+    2, 18 and 19. Case 19 is not a case which is an outlier with respect
+    to the mean of the explanatory variable (is it close to the vertical
+    line), so it does not have the potential to be influential. Let's
+    eliminate cases 2 and 18, which have a large difference with respect
+    to the mean of the midterm, and see if they change the results.
+
+- Class: cmd_question
+  Output: To eliminate this cases, we can do it by entering the command
+    exam[-c(2,18),] and assigning the result to a new data.frame
+    called exam_new. This tells R to not take into account cases 2 and 18
+    (that's why we have a minus sign in front of the first argument), and
+    leave the columns (variables) untouched (that's why we have a comma and
+    nothing afterwards). So try now "exam_new <- exam[-c(2,18),]" to
+    eliminate cases 2 and 18 and have a new data frame called exam_new
+    without them.
+  CorrectAnswer: exam_new <- exam[-c(2,18),]
+  AnswerTests: omnitest(correctExpr='exam_new <- exam[-c(2,18),]')
+  Hint: You have to enter "exam_new <- exam[-c(2,18),]" to eliminate cases
+    2 and 18.
+
+- Class: cmd_question
+  Output: You can now obtain the regression results again and see if
+    the results have changed significantly. Do it with the command
+    lm(final~midterm, data=exam_new), notice that you have to specify
+    the new data frame, otherwise R would still be using the original
+    variables with cases 2 and 18.
+  CorrectAnswer: lm(final~midterm, data=exam_new)
+  AnswerTests: omnitest(correctExpr='lm(final~midterm, data=exam_new)')
+  Hint: You have to enter "lm(final~midterm, data=exam_new)" to compute
+    the regression without cases 18 and 19.
+
+- Class: text
+  Output: As you can see, now the slope of the coefficient has decreased
+    to 0.087. It was 1.127 before, so it is about 13% lower. We can
+    say that these are influential cases, without them, the effect of the
+    midterm grade on the final grade is lower.
+
+- Class: text
+  Output: Sometimes the spread of the data is so large that we cannot figure
+    any linear relation between the variables. There are some techniques
+    based on "smoothing" the variation of the dependent variable, and trying
+    to infer the relation between the two variables once this spread has
+    been eliminated. One of this techniques is called the mean or median
+    trace, based on which center measure is used to smooth the variation
+    of the dependent variables. R has a set of tools which use this
+    smoothing techniques, that may be helpful when there is a lot of variation
+    in the dependent variable but we still expect that there could be
+    a relation between the variables.
+
+- Class: cmd_question
+  Output: We have loaded a data set for you, with two variables, Y is the
+    time in minutes that takes to perform a task by different teams, in a
+    firm, and X is the number of members of each team. Take a look at the
+    data frame using the head() function, the data frame is called "task".
+  CorrectAnswer: head(task)
+  AnswerTests: omnitest(correctExpr='head(task)')
+  Hint: You have to enter "head(task)" to check the first cases of the "task"
+    data frame.
+
+- Class: cmd_question
+  Output: We have saved the X and Y variables in the current R workspace, so
+    that you can work with their names directly, without having to refer to
+    the data frame name. Prepare a scatterplot of Y (time to finish a task)
+    against X (number of members of the team), using the plot() function.
+  CorrectAnswer: plot(Y~X)
+  AnswerTests: omnitest(correctExpr='plot(Y~X)')
+  Hint: You have to enter "plot(Y~X)" to get a scatterplot of Y against X.
+
+- Class: mult_question
+  Output: According to what you see in the scatterplot 
+  AnswerChoices: there is a lot spread and it is hard to figure out the
+    relation between the variables; there is a very clear positive association; there is a very clear negative association
+  CorrectAnswer: there is a lot spread and it is hard to figure out the
+    relation between the variables
+  AnswerTests: omnitest(correctVal='there is a lot spread and it is hard to figure out the relation between the variables')
+  Hint: As it can be seen in the data it is hard to figure out the relationship
+    between Y and X.
+
+- Class: figure
+  Output: We have prepared the residual plot for the linear regression
+    between Y and X for you. You can check it on the right window.
+  Figure: figure_resid.R
+  FigureType: new
+
+- Class: mult_question
+  Output: The residual plot shows 
+  AnswerChoices: a possible non-linear association; a possible linear assotiation
+  CorrectAnswer: a possible non-linear association
+  AnswerTests: omnitest(correctVal='a possible non-linear association')
+  Hint: For low values of X the residuals are positive, for intermediate values
+    of X the residuals are negative, and for high values of X the residuals
+    are positive again.
+
+- Class: figure
+  Output: We have drawn the scatterplot now with the regression line. We
+    can see that the regression line does not fit well to the points in the
+    scatterplot, and that is shows a very weak linear association.
+  Figure: figure_fit.R
+  FigureType: new     
+
+- Class: cmd_question
+  Output: We will use now the "plotluck" package in R to smooth the variation
+    of the dependent variable and get an idea of a possible non-linear
+    relation between Y and X. For doing this the command is
+    plotluck(task,Y~X), remembering that the name of the data frame is task,
+    Y is the time to perform a task, and X is the number of members of the
+    team which performs the task. Enter this command now.
+  CorrectAnswer: plotluck(task,Y~X)
+  AnswerTests: omnitest(correctExpr='plotluck(task,Y~X)')
+  Hint: You have to enter "plotluck(task,Y~X)" to get a trace of the relation
+    between Y and X.
+
+- Class: mult_question
+  Output: The number of members in the team which is optimal (it minimizes
+    the time to perform the task) is approximately
+  AnswerChoices: 6; 4; 10
+  CorrectAnswer: 6
+  AnswerTests: omnitest(correctVal='6')
+  Hint: Check for which value of X the value of Y is at a minimum, according
+    to the trace.
+
+- Class: text
+  Output: Linear regression analysis, as its name shows, is appropriate for
+    the description of the linear relation between two variables. In other
+    words, when at a scatterplot we see that the relationship fits well to
+    a linear relation, we can apply linear regression analysis, always taking
+    into account to define a dependent and an explanatory variable to describe
+    this relation. In some cases, though, the scatterplot will show us
+    a relation that is not adjusting well to what a line would suggest.
+
+- Class: cmd_question
+  Output: We have loaded for you a data frame called "effadv", which
+    corresponds to a set of firms for which we have collected data on
+    expenditures in advertising ("adv") and sales ("sales").
+    We expect that advertising will have a positive effect on sales.
+    Let's look at the scatterplot, with plot(sales~adv). Try it now.
+  CorrectAnswer: plot(sales~adv)
+  AnswerTests: omnitest(correctExpr='plot(sales~adv)')
+  Hint: You have to enter "plot(sales~adv)" to get a scatterplot between
+    sales and advertising.
+
+- Class: cmd_question
+  Output: The cloud of points suggests a possible non-linear relationship
+    between advertising and sales. But we can get a better picture by
+    drawing also the regression line in the scatterplot with
+    abline(lm(sales~adv)). Do it now.
+  CorrectAnswer: abline(lm(sales~adv))
+  AnswerTests: omnitest(correctExpr='abline(lm(sales~adv))')
+  Hint: You have to enter "abline(lm(sales~adv))" to draw the regression line.
+  
+- Class: mult_question
+  Output: The regression line shows us that for low values the lines is
+    systematically above the real points, for intermediate values it is above,
+    and for high values it is below again. According to this, if you want
+    to predict the amount of sales for an advertising expenditure 2equal to 4.5
+  AnswerChoices: there will be an overprediction; the prediction will be right; there will be an underprediction
+  CorrectAnswer: there will be an overprediction
+  AnswerTests: omnitest(correctVal='there will be an overprediction')
+  Hint: Think what value would the line predict for a value of advertising
+    equal to 4.5, compared to the actual values (the red circles).
+
+- Class: cmd_question
+  Output: a simple way of dealing with non-linearities of this type is
+    using the log-log model. In the log-log model we take natural logarithms
+    of the dependent and explanatory variables, and we run the regression
+    with the transformed variables. Let us convert first the dependent
+    variable with lsales <- log(sales). Do it now.
+  CorrectAnswer: lsales <- log(sales)
+  AnswerTests: omnitest(correctExpr='lsales <- log(sales)')
+  Hint: You have to enter "lsales <- log(sales)" to transform the sales
+    variable to logs.
+
+- Class: cmd_question  
+  Output: Do the same log transformation now with the advertising ("adv") and
+    call the new variable "ladv". 
+  CorrectAnswer: ladv <- log(adv)
+  AnswerTests: omnitest(correctExpr='ladv <- log(adv)')
+  Hint: You have to enter "ladv <- log(adv)" to transform the sales
+    variable to logs.
+
+- Class: cmd_question  
+  Output: Plot now a scatterplot between lsales and ladv.
+  CorrectAnswer: plot(lsales~ladv)
+  AnswerTests: omnitest(correctExpr='plot(lsales~ladv)')
+  Hint: You have to enter "plot(lsales~ladv" to transform the sales
+    variable to logs.
+
+- Class: cmd_question  
+  Output: Add now a regression line to the picture with
+    abline(lm(lsales~ladv)).
+  CorrectAnswer: abline(lm(lsales~ladv))
+  AnswerTests: omnitest(correctExpr='abline(lm(lsales~ladv))')
+  Hint: You have to enter "plot(lsales~ladv))" to plot a regression line
+    in the new scatterplot.
+
+- Class: mult_question
+  Output: The scatterplot with the transformed variables shows
+  AnswerChoices: a linear relationship; the same non-linearity as before
+  CorrectAnswer: a linear relationship
+  AnswerTests: omnitest(correctVal='a linear relationship')
+  Hint: Check now if the points spread more evenly above and below the
+    regression line.
+
+- Class: cmd_question
+  Output: We can now compute the regression line and perform a prediction
+    for a value of advertising equal to 4.5. We first obtain the regression
+    coefficients for the transformed variables with lm(lsales~ladv). Do it
+    now.
+  CorrectAnswer: lm(lsales~ladv)
+  AnswerTests: omnitest(correctExpr='lm(lsales~ladv)')
+  Hint: You have to enter "lm(lsales~ladv)" to obtain the regression
+    coefficients.
+
+- Class: cmd_question
+  Output: We can now predict for advertising equal to 4.5, but remember
+    that the regression has been run with the transformed variables,
+    so we have to use log(4.5). The command is then
+    predict(lm(lsales~ladv),data.frame(ladv=log(4.5))). Try it now.
+  CorrectAnswer: predict(lm(lsales~ladv),data.frame(ladv=log(4.5)))
+  AnswerTests: omnitest(correctExpr='predict(lm(lsales~ladv),data.frame(ladv=log(4.5)))')
+  Hint: You have to enter "predict(lm(lsales~ladv),data.frame(ladv=log(4.5)))"
+    to predict the value of log sales for advertising equal to 4.5.
+
+- Class: cmd_question
+  Output: The value that you obtained, 2.921418, is actually log(sales) and
+    not just sales. To go back to sales, you have to apply the exponential
+    function (since exp(log(x)) = x). You can do this by entering
+    exp(2.921418). Do it now.
+  CorrectAnswer: exp(2.921418)
+  AnswerTests: omnitest(correctExpr='exp(2.921418)')
+  Hint: You have to enter "exp(2.921418)" to obtain the prediction in sales,
+    and not log(sales).
+
+- Class: text
+  Output: You could have done this in just one step with
+    exp(predict(lm(lsales~ladv),data.frame(ladv=log(4.5)))), but that's
+    a really long command. With the procedure that we presented you can
+    also fit other transformations, like the semi-log model, that only
+    transforms the dependent variable. Here we finish this lesson, now you
+    have some tools to deal with the relation between two numerical.

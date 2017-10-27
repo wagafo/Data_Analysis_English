@@ -52,7 +52,7 @@
   CorrectAnswer: midterm <- exam$midterm
   AnswerTests: omnitest(correctExpr='midterm <- exam$midterm')
   Hint: You have to enter "midterm <- exam$midterm" and now you will have a
-    variable called final in the current workspace, so you can refer
+    variable called midterm in the current workspace, so you can refer
     directly to it in commands without having to use "exam$midterm".
 
 - Class: text
@@ -89,7 +89,7 @@
   CorrectAnswer: boxplot(final)
   AnswerTests: omnitest(correctExpr='boxplot(final)')
   Hint: You have to enter "boxplot(final)" to get a view of the
-    distribution of the midterm variable.
+    distribution of the final variable.
 
 - Class: mult_question
   Output: From what you see in the boxplot for the final variable, you can
@@ -168,7 +168,7 @@
    regression line and save the results in an object called fit.
 
 - Class: cmd_question
-  Output: To check the values of constant and the coefficient, you just
+  Output: To check the values of the constant and the slope, you just
    have to enter now the name of the object that we just created. Do it now.
   CorrectAnswer: fit
   AnswerTests: omnitest(correctExpr='fit')
@@ -184,7 +184,7 @@
    (grade in the midterm) on the dependent variable (grade in the final).
 
 - Class: cmd_question
-  Output: It is nice to plot the regression line in the scatterplot. For this
+  Output: It is nice to plot the regression line in the scatterplot. For this,
    plot again the scatterplot with the "plot(Y~X)" command.
   CorrectAnswer: plot(final~midterm)
   AnswerTests: omnitest(correctExpr='plot(final~midterm)')
@@ -196,15 +196,15 @@
    the command "abline(fit)". Try it now.
   CorrectAnswer: abline(fit)
   AnswerTests: omnitest(correctExpr='abline(fit)')
-  Hint: You have to enter "abline(fit)" to regression line in the scatterplot
-   between final and midterm.
+  Hint: You have to enter "abline(fit)" to obtain the regression line in
+   the scatterplot between final and midterm.
 
 - Class: cmd_question
   Output: One of the main objectives of regression analysis, is to predict
     the value of the dependent variable given values of the explanatory
     variable. What is the prediction of the final exam grade for a student
     who got a grade equal to 70 in the midterm? We can compute the prediction
-    directly by using the estimated constant (-4.953) and slope(1.127).
+    directly by using the estimated constant (-4.953) and slope (1.127).
     Enter the appropriate formula to compute this prediction.
   CorrectAnswer: -4.953+70*1.127
   AnswerTests: any_of_exprs('-4.953+70*1.127','-4.953+1.127*70','70*1.127-4.953','1.127*70-4.953')
@@ -288,7 +288,7 @@
     that we saved them in an object called "fit.res".
   CorrectAnswer: hist(fit.res)
   AnswerTests: omnitest(correctExpr='hist(fit.res)')
-  Hint: You have to enter "hist(fit.res)" to plot a horizontal line.
+  Hint: You have to enter "hist(fit.res)" to plot a histogram of the  residuals.
 
 - Class: figure
   Output: Still another piece of diagnosis of the regression analysis is
@@ -321,7 +321,7 @@
   CorrectAnswer: identify(final~midterm)
   AnswerTests: omnitest(correctExpr='identify(final~midterm)')
   Hint: You have to enter "identify(final~midterm)", click in the plot on
-    the outliers, and then press "Esc".
+    the outliers, and then press "Esc" two times.
 
 - Class: text
   Output: As you can see, R has identified these cases as cases number
@@ -332,7 +332,7 @@
     to the mean of the midterm, and see if they change the results.
 
 - Class: cmd_question
-  Output: To eliminate this cases, we can do it by entering the command
+  Output: To eliminate these cases, we can do it by entering the command
     exam[-c(2,18),] and assigning the result to a new data.frame
     called exam_new. This tells R to not take into account cases 2 and 18
     (that's why we have a minus sign in front of the first argument), and
@@ -367,9 +367,9 @@
     any linear relation between the variables. There are some techniques
     based on "smoothing" the variation of the dependent variable, and trying
     to infer the relation between the two variables once this spread has
-    been eliminated. One of this techniques is called the mean or median
-    trace, based on which center measure is used to smooth the variation
-    of the dependent variables. R has a set of tools which use this
+    been eliminated. One of these techniques is called the mean or median
+    trace, depending on which center measure is used to smooth the variation
+    of the dependent variables. R has a set of tools which use these
     smoothing techniques, that may be helpful when there is a lot of variation
     in the dependent variable but we still expect that there could be
     a relation between the variables.
@@ -394,7 +394,7 @@
   Hint: You have to enter "plot(Y~X)" to get a scatterplot of Y against X.
 
 - Class: mult_question
-  Output: According to what you see in the scatterplot 
+  Output: According to what you see in the scatterplot
   AnswerChoices: there is a lot spread and it is hard to figure out the
     relation between the variables; there is a very clear positive association; there is a very clear negative association
   CorrectAnswer: there is a lot spread and it is hard to figure out the
@@ -410,7 +410,7 @@
   FigureType: new
 
 - Class: mult_question
-  Output: The residual plot shows 
+  Output: The residual plot shows
   AnswerChoices: a possible non-linear association; a possible linear assotiation
   CorrectAnswer: a possible non-linear association
   AnswerTests: omnitest(correctVal='a possible non-linear association')
@@ -423,7 +423,7 @@
     can see that the regression line does not fit well to the points in the
     scatterplot, and that is shows a very weak linear association.
   Figure: figure_fit.R
-  FigureType: new     
+  FigureType: new
 
 - Class: cmd_question
   Output: We will use now the "plotluck" package in R to smooth the variation
@@ -474,12 +474,12 @@
   CorrectAnswer: abline(lm(sales~adv))
   AnswerTests: omnitest(correctExpr='abline(lm(sales~adv))')
   Hint: You have to enter "abline(lm(sales~adv))" to draw the regression line.
-  
+
 - Class: mult_question
-  Output: The regression line shows us that for low values the lines is
-    systematically above the real points, for intermediate values it is above,
-    and for high values it is below again. According to this, if you want
-    to predict the amount of sales for an advertising expenditure 2equal to 4.5
+  Output: The regression line shows us that for low values the line is
+    systematically above the real points, for intermediate values it is below,
+    and for high values it is above again. According to this, if you want
+    to predict the amount of sales for an advertising expenditure equal to 4.5
   AnswerChoices: there will be an overprediction; the prediction will be right; there will be an underprediction
   CorrectAnswer: there will be an overprediction
   AnswerTests: omnitest(correctVal='there will be an overprediction')
@@ -497,22 +497,22 @@
   Hint: You have to enter "lsales <- log(sales)" to transform the sales
     variable to logs.
 
-- Class: cmd_question  
+- Class: cmd_question
   Output: Do the same log transformation now with the advertising ("adv") and
-    call the new variable "ladv". 
+    call the new variable "ladv".
   CorrectAnswer: ladv <- log(adv)
   AnswerTests: omnitest(correctExpr='ladv <- log(adv)')
   Hint: You have to enter "ladv <- log(adv)" to transform the sales
     variable to logs.
 
-- Class: cmd_question  
+- Class: cmd_question
   Output: Plot now a scatterplot between lsales and ladv.
   CorrectAnswer: plot(lsales~ladv)
   AnswerTests: omnitest(correctExpr='plot(lsales~ladv)')
   Hint: You have to enter "plot(lsales~ladv" to transform the sales
     variable to logs.
 
-- Class: cmd_question  
+- Class: cmd_question
   Output: Add now a regression line to the picture with
     abline(lm(lsales~ladv)).
   CorrectAnswer: abline(lm(lsales~ladv))

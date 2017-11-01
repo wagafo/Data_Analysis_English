@@ -164,7 +164,7 @@
    and final variable, and assign the result to an object called "fit".
   CorrectAnswer: fit <- lm(final~midterm)
   AnswerTests: omnitest(correctExpr='fit <- lm(final~midterm)')
-  Hint: You have to enter "fit <- cor(midterm,final)" to compute the
+  Hint: You have to enter "fit <- lm(final~midterm)" to compute the
    regression line and save the results in an object called fit.
 
 - Class: cmd_question
@@ -302,7 +302,6 @@
     the marked outliers again for you.
   Figure: figure_outliers.R
   FigureType: new
-
 
 - Class: cmd_question
   Output: To analyze influential cases we have to identify them by knowing
@@ -509,15 +508,15 @@
   Output: Plot now a scatterplot between lsales and ladv.
   CorrectAnswer: plot(lsales~ladv)
   AnswerTests: omnitest(correctExpr='plot(lsales~ladv)')
-  Hint: You have to enter "plot(lsales~ladv" to transform the sales
-    variable to logs.
+  Hint: You have to enter "plot(lsales~ladv)" to plot a scatterplot between
+    lsales and ladv.
 
 - Class: cmd_question
   Output: Add now a regression line to the picture with
     abline(lm(lsales~ladv)).
   CorrectAnswer: abline(lm(lsales~ladv))
   AnswerTests: omnitest(correctExpr='abline(lm(lsales~ladv))')
-  Hint: You have to enter "plot(lsales~ladv))" to plot a regression line
+  Hint: You have to enter "abline(lsales~ladv))" to plot a regression line
     in the new scatterplot.
 
 - Class: mult_question

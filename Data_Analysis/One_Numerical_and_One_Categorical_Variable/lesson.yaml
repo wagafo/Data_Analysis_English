@@ -1,0 +1,185 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: One numerical and one categorical variable
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: This tutorial will give you tools to analyze the relation
+    between a categorical and a numerical variable. This analysis does
+    not introduce too many new tools, since it consists of a analyzing
+    the distribution of a numerical variable (a single numerical variable,
+    therefore we use the mean, the standard deviation, the median,
+    the histogram, and so on, to describe its distribution) for each
+    group defined by the categorical variable. If the distributions for
+    each group are different, we say that there is a relation between
+    the two variables.
+
+- Class: cmd_question
+  Output: We will use a data frame that we have read for you called
+    "rendcom", containing two variables. A numerical variable called
+    "income" collecting information of the income of several people,
+    and another variable called "county" telling us in which county
+    each of this persons live. Enter now "rendcom" (without the
+    quotation marks) to see how this data frame looks like.
+  CorrectAnswer: rendcom
+  AnswerTests: omnitest(correctExpr='rendcom')
+  Hint: Enter "rendcom" to see how the data frame looks like.
+
+- Class: text
+  Output: In this tutorial we will use three R packages that we have
+    already enabled for you, called "psych", "lattice" and "gplots".
+    Recall to install them (install.packages("name_package")) and enable
+    them (library("name_package")) in your R installation if you want to
+    use them. We will now start the analysis of the relation between
+    "income" and "county".
+
+- Class: cmd_question
+  Output: The first thing that we have to do is to obtain the numerical
+    summaries of the "income" variable for each category of the "county"
+    variable. For this, we sill use the describeBy() function of the
+    psych package. The first argument of this function is the numerical
+    variable, and the second one is the categorical variable. Try this
+    function now.
+  CorrectAnswer: describeBy(rendcom$income,rendcom$county)
+  AnswerTests: omnitest(correctExpr='describeBy(rendcom$income,rendcom$county)')
+  Hint: Enter "describeBy(rendcom$income,rendcom$county)" to obtain the main
+    numerical summaries  for each group defined by the categorical variable.
+
+- Class: mult_question
+  Output: Observing the distributions of the numerical variable for each
+    group, we can say that
+  AnswerChoices: They are quite different, therefore there is a relation
+    between the two variables, the county of residence has an influence
+    on income distribution; They are quite similar, therefore income is
+    independent from county of residence
+  CorrectAnswer: They are quite different, therefore there is a relation
+    between the two variables, the county of residence has an influence
+    on income distribution
+  AnswerTests: omnitest(correctVal='They are quite different, therefore there is a relation between the two variables, the county of residence has an influence
+    on income distribution')
+  Hint: Look at the mean, the median, the standard deviation, the skewness
+    coefficient, the kurtosis, and check if there different for the different
+    counties.
+
+- Class: cmd_question
+  Output: A usual, a picture is worth thousand words. Using graphical tools
+    is a very convenient way to check if the distributions of the numerical
+    variable is different when we condition on the values of the categorical
+    variable. The boxplot is a quite complete description of the distribution
+    of a numerical variable. A very useful tool is therefore to draw
+    boxplots of the numerical variable next to each other for each group
+    to compare them. We can do this using the command
+    boxplot(income~county,data=rendcom, xlab="County", ylab="Income"). The
+    arguments xlab and ylab label the axis. Enter now this command to
+    compare the distributions of the numerical variable for the different
+    groups defined by the categorical variable.
+  CorrectAnswer: boxplot(income~county,data=rendcom, xlab="County", ylab="Income")
+  AnswerTests: omnitest(correctExpr='boxplot(income~county,data=rendcom, xlab="County", ylab="Income")')
+  Hint: Enter "boxplot(income~county,data=rendcom, xlab="County", ylab="Income")" to get boxplots next to each other.
+
+- Class: mult_question
+  Output: According to what we observe with the boxplots next to each other,
+    which of the following statements is correct?
+  AnswerChoices: There is more income spread in Barcelonès and Noguera
+    than at the rest of counties; there are income outliers at
+    Barcelonès and Noguera; the most frequent values of income are larger
+    in Noguera than in the other counties
+  CorrectAnswer: There is more income spread in Barcelonès and Noguera
+    than at the rest of counties
+  AnswerTests: omnitest(correctVal='There is more income spread in Barcelonès and Noguera than at the rest of counties')
+  Hint: Look at the length of the boxes for the spread, the small circles
+    for the outliers and the thick horizontal line for the most frequent
+    income value (the median of income).
+
+- Class: cmd_question
+  Output: The other most used graphical summary for a numerical
+    variable is the histogram. Therefore it is interesting to obtain
+    also separate histograms for each group defined by the categorical
+    variable. We can do this with the histogram() function from the
+    lattice package. The appropriate command is
+    histogram(~income|factor(county), data=rendcom, xlab="Income"). Try this
+    command now.
+  CorrectAnswer: histogram(~income|factor(county), data=rendcom, xlab="Income")
+  AnswerTests: omnitest(correctExpr='histogram(~income|factor(county), data=rendcom, xlab="Income")')
+  Hint: Enter "histogram(~renda|factor(county), data=rendcom, xlab="Income")"
+    to obtain histograms for each group defined by the categorical variable.
+
+- Class: mult_question
+  Output: "According to what we observe at the histograms for each group,
+    the most frequent income is highest at the following county:"
+  AnswerChoices: Bagès; Noguera; Barcelonès; Baix Llogregat
+  CorrectAnswer: Barcelonès
+  AnswerTests: omnitest(correctVal='Barcelonès')
+  Hint: Look which histogram has the modal class at a largest value for
+    income.
+
+- Class: cmd_question
+  Output: Finally, it is also interesting to compare the means of the
+    numerical variable within each group defined by the categorical
+    variable. If they are quite different we know that the categorical
+    variable is related to the distribution of the numerical variable. But
+    if they are similar we still have to check the other numerical
+    summaries, since we can only say that the variables are independent is
+    the whole distributions for each group are similar, not only the center.
+    To compare only the means graphically we can use the plotmeans() function
+    of the gplots package. The command is
+    plotmeans(income~county, data=rendcom). Try it now.
+  CorrectAnswer: plotmeans(income~county, data=rendcom)
+  AnswerTests: omnitest(correctExpr='plotmeans(income~county, data=rendcom)')
+  Hint: Enter "plotmeans(income~county, data=rendcom)" to obtain the plot
+    of the means and compare them.
+
+- Class: text
+  Output: We have now a fairly complete view of the tools used to analyze
+    the relation between a numerical and a categorical variable. A last
+    thing to take into account, recall that there are two types of
+    categorical variables, nominal and ordinal. The "county" variable
+    in our previous example is ordinal, the categories have a name but
+    they do not have a natural order.
+
+- Class: text
+  Output: For ordinal categorical variables, instead, we can order
+    the categories, since they come from a numerical variable whose
+    values have been grouped in categories. As examples consider
+    "income level", "education level", "age group", and so on. If
+    you want to analyze this type of variables, take care to call
+    the categories in a way that will respect the order, once they
+    are alphabetically ordered. A trick for this is to put "1.", "2.",
+    "3.", and so on, in front of the name of each category. For instance
+    "1. No schooling", "2. Primary school", "3. High school", and so on,
+    for education level. If we do this, R will show us first "No schooling",
+    then "Primary school", and so on.
+
+- Class: figure
+  Output: We have prepared for you boxplots side by side to analyze
+    the relationship between education level and income. To have
+    education level in the correct order, we have used the trick described
+    above.
+  Figure: figure_educ.R
+  FigureType: new
+
+- Class: mult_question
+  Output: Another difference of nominal and ordinal categorical variables
+    is that in the case of the relation between a numerical variable
+    and an ordinal categorical variable we can describe the relation as
+    association between the variables, since the categorical variable comes
+    from a grouped numerical variable. Considering this, which do you think
+    is the correct statement below?
+  AnswerChoices: There is a positive association between income and
+    education level; There is a negative association between income and
+    education level; Income and education level are two independent
+    variables
+  CorrectAnswer: There is a positive association between income and
+    education level
+  AnswerTests: omnitest(correctVal='There is a positive association between income and education level')
+  Hint: Look if the distributions of the numerical variable vary among
+    the different groups defined by the categorical variable, and if
+    the income level increases with years of schooling (this is the
+    numerical variable that once grouped has defined the education levels).
+
+- Class: text
+  Output: You have completed this lesson, where you have learned the tools
+    to analyze the relation between a numerical and a categorical variable.

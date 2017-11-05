@@ -33,9 +33,9 @@
     use the table() function, giving it the name of the data frame as
     first arguments. Try it now, assigning the result to an object
     called "dist".
-  CorrectAnswer: dist <- table(community)
-  AnswerTests: omnitest(correctExpr='dist <- table(community)')
-  Hint: You have to enter "dist <- table(community)" to obtain the contingency
+  CorrectAnswer: dist <- table(commuting)
+  AnswerTests: omnitest(correctExpr='dist <- table(commuting)')
+  Hint: You have to enter "dist <- table(commuting)" to obtain the contingency
     table for the categorical variables "county" and "transport" and
     assign it to an object called "dist".
 

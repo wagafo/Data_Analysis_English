@@ -1,0 +1,291 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Two categorical variables
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: This is a tutorial on the analysis of two categorical
+    variables with R.
+
+- Class: text
+  Output: There are two ways to load the data of the categorical
+    variables, 1) case by case and 2) directly from a contingency table.
+
+- Class: cmd_question
+  Output: We say that we have data case by case when we have the
+    data in spreadsheet. The first row contains the name of the variables,
+    each row contains data for one individual, and there are at least
+    two columns with each categorical variable that we want to analyze.
+    We have loaded a data frame for you coming from such a spreadsheet
+    named "commuting", containing data of the county where 36 persons live,
+    and the transport mean they use. Enter "commuting" (without quotation
+    marks) to see the data "case by case" for these 36 persons.
+  CorrectAnswer: commuting
+  AnswerTests: omnitest(correctExpr='commuting')
+  Hint: You have to enter "commuting" to see the cases for the categorical
+    variables included in the data frame "mobility".
+
+- Class: cmd_question
+  Output: To obtain the contingency table for this data set, we just
+    use the table() function, giving it the name of the data frame as
+    first arguments. Try it now, assigning the result to an object
+    called "dist".
+  CorrectAnswer: dist <- table(community)
+  AnswerTests: omnitest(correctExpr='dist <- table(community)')
+  Hint: You have to enter "dist <- table(community)" to obtain the contingency
+    table for the categorical variables "county" and "transport" and
+    assign it to an object called "dist".
+
+- Class: cmd_question
+  Output: The table() function shows the absolute frequency of the
+    joint distribution between the two categorical variables. To see
+    the results enter now "dist" (without quotation marks).
+  CorrectAnswer: dist
+  AnswerTests: omnitest(correctExpr='dist')
+  Hint: You have to enter "dist" to see the absolute frequency of the
+    joint distribution of the "county" and "transport" variables.
+
+- Class: cmd_question
+  Output: We can also show the joint distribution in graphical form wit
+    a bar plot. We can obtain a bar plot with the barplot() function.
+    The first argument is the table object, and it can have several
+    arguments. Try now for instance barplot(dist,legend=TRUE) to obtain
+    the bar plot for the two variables in stacked form.
+  CorrectAnswer: barplot(dist, legend=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(dist, legend=TRUE)')
+  Hint: Enter «barplot(dist, legend=TRUE)» to obtain the stacked bar plot.
+
+- Class: cmd_question
+  Output: A useful function is t(). This function transposes a table, that
+    is columns are converted into rows, and rows are converted into columns.
+    Try to transpose the "dist" object we just created.
+  CorrectAnswer: t(dist)
+  AnswerTests: omnitest(correctExpr='t(dist)')
+  Hint: You have to enter «t(dist)» to transpose the contingency table.
+
+- Class: cmd_question
+  Output: By default, R prepares bar diagrams with the column variable at
+    the horizontal axis, and in stacked form. We can prepare a bar diagram
+    with the row variable in the horizontal axis, and in grouped form,
+    with the command barplot(t(dist),legend=TRUE,beside=TRUE), try it now.
+  CorrectAnswer: barplot(t(dist),legend=TRUE,beside=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(t(dist),legend=TRUE,beside=TRUE)')
+  Hint: Enter "barplot(t(dist),legend=TRUE,beside=TRUE)" to obtain a bar
+    plot in grouped form and with the row variable in the horizontal axis.
+
+- Class: cmd_question
+  Output: To obtain the relative frequency of the joint distribution of the
+    two categorical variables, we use the prop.table() function. The
+    argument is the table, we do not have to specify it completely because
+    we can use the "dist" object that we created. Try it now.
+  CorrectAnswer: prop.table(dist)
+  AnswerTests: omnitest(correctExpr='prop.table(dist)')
+  Hint: Enter "prop.table(dist)" to see the relative frequency of the
+    joint distribution between the "county" and "transport" variables.
+
+- Class: cmd_question
+  Output: We can obtatin the marginal distribution of the row variable
+    (in this case "county") using the margin.table() function. It has
+    two arguments, the first one is the table (we can use "dist") and
+    the second is 1 for the row variable. Get now the marginal distribution
+    for the "county" variable.
+  CorrectAnswer: margin.table(dist,1)
+  AnswerTests: omnitest(correctExpr='margin.table(dist,1)')
+  Hint: Enter "margin.table(dist,1)" to see the absolute frequency of the
+    marginal distribution of the row variable.
+
+- Class: cmd_question
+  Output: Similarly, we can obtain the marginal distribution of the
+    column variable (in this case "transport"), in this case the second
+    argument of the margin.table() function has to be 2. Get now the
+    absolute frequency of the column variable "transport".
+  CorrectAnswer: margin.table(dist,2)
+  AnswerTests: omnitest(correctExpr='margin.table(dist,2)')
+  Hint: You have to enter "margin.table(dist,2)" to see the absolute
+    frequency of the column variable of the contingency table.
+
+- Class: cmd_question
+  Output: To obtain the relative frequency of the marginal distributions
+    you have to use the prop.table() function, using as argument
+    the marginal distribution that we just showed, for instance to
+    obtain the relative frequency of the marginal distribution of the
+    row variable "county" we can use the command
+    prop.table(margin.table(dist,1)). Try this command now.
+  CorrectAnswer: prop.table(margin.table(dist,1))
+  AnswerTests: omnitest(correctExpr='prop.table(margin.table(dist,1))')
+  Hint: You have to enter "prop.table(margin.table(dist,1))" to see
+    the relative frequency of the row variable of the contingency table.
+
+- Class: cmd_question
+  Output: Finally, to obtain the conditional distributions, we use
+    again the prop.table() function with two arguments. The first argument
+    is the table, and the second one an indicator of the variable we
+    want to use as condition. For instance, to condition on the row
+    variable we use 1. Enter now the appropriate command to obtain the
+    relative frequency of the distribution of "transport" conditioned
+    on "county".
+  CorrectAnswer: prop.table(dist,1)
+  AnswerTests: omnitest(correctExpr='prop.table(dist,1)')
+  Hint: Enter "prop.table(dist,1)" to obtain the relative frequency of
+    the conditional distribution of the "transport" variable conditioned
+    on the "county" variable.
+
+- Class: text
+  Output: When we observe that the conditional distributions look different
+    we say that the categorical variables are related.
+
+- Class: mult_question
+  Output: According to what you observe in the conditional distributions
+    of the "transport" variable conditioned on the "county" variable,
+    which of the following statements is the correct one?
+  AnswerChoices: there is a relation between the two variables; there is
+    no relation between the two variables
+  CorrectAnswer: there is a relation between the two variables
+  AnswerTests: omnitest(correctVal='there is a relation between the two variables')
+  Hint: Looks if the conditional distributions are similar or different.
+
+- Class: cmd_question
+  Output: Another convenient way to look if the conditional distributions
+    are equal or different is my means of a bar diagram. Setting everything
+    on the same scale, it is easy to assess if there are differences
+    between the proportions of the categories of the variable we want to
+    analyze. For instance, to represent the bar plot of the row variable
+    ("county") conditioned on the column variable ("transport") we can use
+    the order barplot(prop.table(dist,2),legend=TRUE). Try it now.
+  CorrectAnswer: barplot(prop.table(dist,2),legend=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(prop.table(dist,2),legend=TRUE)')
+  Hint: You have to enter "barplot(prop.table(dist,2),legend=TRUE)" to obtain
+    the bar plot of the conditional distribution of the row variable
+    conditioned on the column variable.
+
+- Class: mult_question
+  Output: Observing the conditional distribution you just obtained graphically,
+    which of the following statement is correct?
+  AnswerChoices: At Noguera county is where the car is used the most; At
+    the Barcelonès county is where the bus is used most
+  CorrectAnswer: At Noguera county is where the car is used the most
+  AnswerTests: omnitest(correctVal='At Noguera county is where the car is used the most')
+  Hint: Look at the relative frequency within each column, Bus and Car,
+   which shows you the proportions (over 1) of use in each county of the
+   transport mean represented in the column, and look which county has the
+   largest proportion.
+
+- Class: cmd_question
+  Output: Using a 2 as second argument in the prop.table() function, we
+    can get the conditional distributions of the row variable ("county")
+    conditioned on the column variable ("transport"). Get now these
+    distributions using the appropriate command.
+  CorrectAnswer: prop.table(dist,2)
+  AnswerTests: omnitest(correctExpr='prop.table(dist,2)')
+  Hint: You have to enter "prop.table(dist,2)" to get the relative
+    frequency of the conditional distribution of the row variable
+    ("county") conditioned on the column variable ("transport").
+
+- Class: cmd_question
+  Output: To obtain the bar diagram of the conditional distribution of the
+    row variable ("transport") conditioned on the row variable ("county"),
+    we can enter the following command
+    barplot(t(prop.table(dist,1)),legend=TRUE). Try it now.
+  CorrectAnswer: barplot(t(prop.table(dist,1)),legend=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(t(prop.table(dist,1)),legend=TRUE)')
+  Hint: You have to enter "barplot(t(prop.table(dist,1)),legend=TRUE)"
+    to obtain the bar diagram of the conditional distribution of the
+    column variable conditioned on the row variable.
+
+- Class: text
+  Output: Apart from "case by case", we can enter data directly from a
+    contingency table.
+
+- Class: cmd_question
+  Output: We will work now with a new data set with two categorical
+    variables, "preferred football team" at the rows, and "city of residence"
+    at the columns. You can see the data if you enter "fans" (without
+    quotation marks) at the command line. Do it now.
+  CorrectAnswer: fans
+  AnswerTests: omnitest(correctExpr='fans')
+  Hint: Enter "fans" to see the contingency table of the "preferred team"
+    and "city of residence" variables.
+
+- Class: cmd_question
+  Output: We first have to enter the relative frequency of the joint
+    distribution. We create a vector with the c() function, and we
+    have to enter the frequency along the rows, that is
+    c(4,2,0,1,5,1,0,1,6). Assign the result to an object called "freq".
+    Do it now.
+  CorrectAnswer: freq <- c(4,2,0,1,5,1,0,1,6)
+  AnswerTests: omnitest(correctExpr='freq <- c(4,2,0,1,5,1,0,1,6)')
+  Hint: Entreu «freq <- c(4,2,0,1,5,1,0,1,6)» per veure la taula de
+    contingència de les variables.
+
+- Class: cmd_question
+  Output: Next, we create a table based on the frequency we have saved
+    in the previous command, with the use of the matrix() function.
+    We have to specify three columns (ncol=3) and that the data
+    has been entered along the rowss (byrow=TRUE). Furthermore, we have
+    to tell R that the type of this object is "table". This is the final
+    command, as.table(matrix(freq, ncol=3, byrow=TRUE)). Create now this
+    table object and assign it to an object called "mytable".
+  CorrectAnswer: mytable <- as.table(matrix(freq, ncol=3, byrow=TRUE))
+  AnswerTests: omnitest(correctExpr='mytable <- as.table(matrix(freq, ncol=3, byrow=TRUE))')
+  Hint: Enter "mytable <- as.table(matrix(freq, ncol=3, byrow=TRUE))" to
+    create a table of teams and cities at the "mytable" object.
+
+- Class: cmd_question
+  Output: To enter the names of the categories for each variable we use
+    the colnames() and rownames() functions. For instance to enter the
+    name of the categories of the column variable we enter
+    colnames(mytable) <- c("Barcelona","Madrid","Sevilla"). Enter now
+    the names of the categories of the column variable.
+  CorrectAnswer: colnames(mytable) <- c("Barcelona","Madrid","Sevilla")
+  AnswerTests: omnitest(correctExpr='colnames(mytable) <- c("Barcelona","Madrid","Sevilla")')
+  Hint: Enter "colnames(mytable) <- c("Barcelona","Madrid","Sevilla")" to
+    enter the names of the categories of the column variable.
+
+- Class: cmd_question
+  Output: Knowing the names of the categories for the row variable are
+    "Barça", "Real Madrid", "Betis", enter these names using the
+    rownames() function.
+  CorrectAnswer: rownames(mytable) <- c("Barça","Real Madrid","Sevilla")
+  AnswerTests: omnitest(correctExpr='rownames(mytable) <- c("Barça","Real Madrid","Sevilla")')
+  Hint: Enter "rownames(mytable) <- c("Barça","Real Madrid","Sevilla")"
+    to enter the names of the categories for the row variable
+
+- Class: cmd_question
+  Output: We can now enter "mytable" (without quotation marks) to see
+    the table we have just created.
+  CorrectAnswer: mytable
+  AnswerTests: omnitest(correctExpr='mytable')
+  Hint: Enter "mytable" to see the contingency table.
+
+- Class: cmd_question
+  Output: We have already created the contingency table. We can now
+    analyze the relation between the two categorical variables just as
+    we did with the previous example. For instance, get the bar plot
+    of the conditional distribution of the "teams" variable conditioned
+    on "city", using the command barplot(prop.table(mytable,2),legend=TRUE).
+  CorrectAnswer: barplot(prop.table(mytable,2),legend=TRUE)
+  AnswerTests: omnitest(correctExpr='barplot(prop.table(mytable,2),legend=TRUE)')
+  Hint: Enter "barplot(prop.table(mytable,2),legend=TRUE)» to see the
+    conditional distribution of "team" conditioned on "city".
+
+- Class: mult_question
+  Output: Checking the conditional distributions of "team" conditioned
+    on "city" we can say that
+  AnswerChoices: There is a relation, team preference is affected
+    by city of residence; There is no relation, team preference is
+    independent of city of residence
+  CorrectAnswer: There is a relation, team preference is affected
+    by city of residence
+  AnswerTests: omnitest(correctVal='There is a relation, team preference is affected by city of residence')
+  Hint: Check the relative frequency of each column for each city, to see
+    if the proportions of preference for teams are different within the
+    different cities.
+
+- Class: text
+  Output: You have finished this lesson on the analysis of two categorical
+    variables. You now know how to enter the data and how to determine if
+    there is a relation or if we can say that the categorical variables are
+    independent.

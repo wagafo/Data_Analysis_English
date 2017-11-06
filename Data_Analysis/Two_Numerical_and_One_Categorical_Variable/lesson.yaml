@@ -1,0 +1,124 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Two numerical and one categorical variable
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: In this tutorial we will see how to analyze the relation between
+    two numerical and one categorical variable, that is, how to
+    introduce a categorical variable into the analysis of the two
+    numerical variables. It consists of separating the data set into
+    groups defined by the categorical variable, and to check the
+    relation between the two numerical variables within each group.
+
+- Class: cmd_question
+  Output: We will use a data frame that we have already read for you,
+    called "wagexp". It contains data on the wage of 41 workers,
+    the experience (measured in years) for these workers, and the
+    plant where they work. We want to see if experience has an effect
+    on wage, and if there are any differences of this relation between
+    plants. There are therefore 3 variables, "wage", "exper" and "plant".
+    Enter "wagexp" (without the quotation marks) to check how this
+    data frame looks like.
+  CorrectAnswer: wagexp
+  AnswerTests: omnitest(correctExpr='wagexp')
+  Hint: Enter "wagexp" to check how the data frame looks like.
+
+- Class: text
+  Output: In this tutorial we will use three packages of R that we have
+    enabled for you, "ggplot2", "nlme" and "data.table". Remember to
+    install them (install.packages("name_package")) and enable them
+    (library(name_package)) in your R installation if you want to use
+    them.
+
+- Class: cmd_question
+  Output: As always, it is convenient to start with a scatterplot to
+    see the relation between the two numerical variables. We can first
+    plot a scatterplot ignoring the groups defined by the categorical
+    variable (the plants). For the scatterplot we use the plot() function
+    as we did in the tutorial for two numerical variables. Enter now
+    the appropriate command to obtain the scatterplot.
+  CorrectAnswer: plot(wagexp$wage~wagexp$exper)
+  AnswerTests: omnitest(correctExpr='plot(wagexp$wage~wagexp$exper)')
+  Hint: Enter "plot(wagexp$wage~wagexp$exper)" to see the scatterplot.
+
+- Class: cmd_question
+  Output: The scatterplot suggests a positive association between wage
+    and experience, but with a lot of spread. Remember that you can
+    draw a regression line at the scatterplot with
+    abline(lm(wagexp$wage~wagexp$exper)). Do it now.
+  CorrectAnswer: abline(lm(wagexp$wage~wagexp$exper))
+  AnswerTests: omnitest(correctExpr='abline(lm(wagexp$wage~wagexp$exper))')
+  Hint: Use "abline(lm(wagexp$wage~wagexp$exper))» to add a regression line
+    to the scatterplot.
+
+- Class: cmd_question
+  Output: The regression line confirms the positive, but weak, linear
+    association between the two variables. We can ask ourselves if this
+    relation holds within each plant. For this, it is convenient to
+    draw the scatterplot distinguishing the points according to the
+    "plant" categorical variable. We can do this with the functions
+    of the ggplot2 package. This is a very complete package for graphics.
+    Explaining it would give material for several tutorials. Here we
+    will just present directly the needed command. It is 
+        ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point().  This command will distinguish the dots for each plant with different
+    colors an shapes. Try this command now.
+  CorrectAnswer: ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point()
+  AnswerTests: omnitest(correctExpr='ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point()')
+  Hint: Enter "ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point()" to get the scatterplot with the dots drawn with different
+    colours and shapes for the different plants.
+
+- Class: cmd_question
+  Output: If we furthermore want to add regression lines for each plant,
+    the command becomes even longer. It is
+    ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point() + geom_smooth(method="lm", fill = NA). Try it now.
+  CorrectAnswer: ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point() + geom_smooth(method="lm", fill = NA)
+  AnswerTests: omnitest(correctExpr='ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point() + geom_smooth(method="lm", fill = NA)')
+  Hint: Enter "ggplot(wagexp,aes(y = wage, x = exper,colour=plant,shape=plant)) + geom_point() + geom_smooth(method="lm", fill = NA)" to draw different
+    regression lines for each plant.
+
+- Class: cmd_question
+  Output: We see that at each plant we still have positive linear association
+    between wage and experience. We are also interested in obtaining the
+    numerical summaries for each plant. To obtain the correlation coefficients
+    for each plant, we will use the data.table package. We have first
+    to create a data.table object, which we can do with
+    dt <- data.table(wagexp). Do it now.
+  CorrectAnswer: dt <- data.table(wagexp)
+  AnswerTests: omnitest(correctExpr='dt <- data.table(wagexp)')
+  Hint: Write "dt <- data.table(wagexp)" to create a data.table object
+    from the data frame "wagexp".
+
+- Class: cmd_question
+  Output: And now we can obtain the correlation by plant with the command
+    dt[,list(Correlation = cor(wage,exper)),by=plant]. Enter this command
+    now.
+  CorrectAnswer: dt[,list(Correlation = cor(wage,exper)),by=plant]
+  AnswerTests: omnitest(correctExpr='dt[,list(Correlation = cor(wage,exper)),by=plant]')
+  Hint: Enter "dt[,list(Correlation = cor(wage,exper)),by=plant]" to obtain
+    the correlation coefficient by plant.
+
+- Class: text
+  Output: We see that for all plants the correlation is positive, except
+    for plant E where it is negative but almost 0. If we look at the
+    scatterplot, we can see that the regression line for plant E is almost
+    flat.
+
+- Class: cmd_question
+  Output: Finally, with the lmList() of the nlme package we can obtain
+    linear regression coefficients for each plant. The command is
+    lmList(wage~exper|plant, data=wagexp). Get now the regression
+    coefficients for each plant.
+  CorrectAnswer: lmList(wage~exper|plant, data=wagexp)
+  AnswerTests: omnitest(correctExpr='lmList(wage~exper|plant, data=wagexp)')
+  Hint: Write "lmList(wage~exper|plant, data=wagexp)" the regression
+    coefficients for each plant.
+
+- Class: text
+  Output: We see that all regression slopes are positive except for plant
+    E. This finishes this tutorial where you have learnt how to introduce
+    a categorical variable in the relation between two numerical variables.
+

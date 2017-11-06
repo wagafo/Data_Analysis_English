@@ -164,7 +164,7 @@
    and final variable, and assign the result to an object called "fit".
   CorrectAnswer: fit <- lm(final~midterm)
   AnswerTests: omnitest(correctExpr='fit <- lm(final~midterm)')
-  Hint: You have to enter "fit <- lm(final~midterm)" to compute the
+  Hint: You have to enter "fit <- cor(midterm,final)" to compute the
    regression line and save the results in an object called fit.
 
 - Class: cmd_question
@@ -234,7 +234,7 @@
 
 - Class: text
   Output: In the results shown by R you can see again the regression
-    coefficients under "Estimate". You can also get the value for coeefficient
+    coefficients under "Estimate". You can also get the value for coefficient
     of determination (also called R-squared), which is equal to 0.41. and
     some statistics for the regression residuals.
 

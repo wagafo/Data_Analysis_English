@@ -295,7 +295,7 @@
     The series goes from the first quarter of 2012 until the last quarter
     of 2016, a year longer than the first example. Therefore it has 20 periods.
     To perform a prediction for the third quarter of 2017, we first adjust
-    a linear trend with "tslm(series2~trend". Do it now, assigning the
+    a linear trend with "tslm(series2~trend)". Do it now, assigning the
     result to "fit2".
   CorrectAnswer: fit2 <- tslm(series2~trend)
   AnswerTests: omnitest(correctExpr='fit2 <- tslm(series2~trend)')

@@ -347,7 +347,7 @@
     text(final~midterm, labels=rownames(exam)). Enter this command
   CorrectAnswer: text(final~midterm, labels=rownames(exam))
   AnswerTests: omnitest(correctExpr='text(final~midterm, labels=rownames(exam))')
-  Hint: You have to enter "text(final~midterm, labels=rownames(cars))" to label
+  Hint: You have to enter "text(final~midterm, labels=rownames(exam))" to label
     each case with its case number.
 
 - Class: cmd_question

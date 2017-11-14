@@ -306,7 +306,8 @@
 - Class: cmd_question
   Output: To analyze influential cases we have to identify them by knowing
     the case number, eliminate them, and see if the slope coefficient changes
-    or not. A useful command to identify outliers is the identify() function
+    or not. 
+    A useful command to identify outliers is the identify() function
     of R. Entering identify(Y~X) you get a scatterplot between Y and X. You
     can click on the different cases you want to identify, and once you
     press "Esc" (the escape key), R will show you the case number (observation
@@ -326,9 +327,28 @@
   Output: As you can see, R has identified these cases as cases number
     2, 18 and 19. Case 19 is not a case which is an outlier with respect
     to the mean of the explanatory variable (is it close to the vertical
-    line), so it does not have the potential to be influential. Let's
+    line), so it does not have the potential to be influential. We will
     eliminate cases 2 and 18, which have a large difference with respect
-    to the mean of the midterm, and see if they change the results.
+    to the mean of the midterm, and see if they change the results, but
+    first we will present another tool to identify outliers.
+
+- Class: cmd_question
+  Output: Another useful tool is to get a scatterplot with labels showing
+    each case number. For this we first get the scatterplot with light blue
+    circles so that we can print the case number on them, with
+    plot(final~midterm, col="lightblue"). Try it now.
+  CorrectAnswer: plot(final~midterm, col="lightblue")
+  AnswerTests: omnitest(correctExpr='plot(final~midterm, col="lightblue")')
+  Hint: You have to enter "plot(final~midterm, col="lightblue")" to graph
+    a scatterplot with light blue dots.
+
+- Class: cmd_question
+  Output: We print the case number labels with
+    text(final~midterm, labels=rownames(exam)). Enter this command
+  CorrectAnswer: text(final~midterm, labels=rownames(exam))
+  AnswerTests: omnitest(correctExpr='text(final~midterm, labels=rownames(exam))')
+  Hint: You have to enter "text(final~midterm, labels=rownames(cars))" to label
+    each case with its case number.
 
 - Class: cmd_question
   Output: To eliminate these cases, we can do it by entering the command

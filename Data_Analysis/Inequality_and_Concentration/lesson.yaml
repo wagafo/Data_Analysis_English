@@ -1,0 +1,175 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Inequality and concentration
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: To understand the distribution of some variables it is useful to
+    measure the degree of inequality of its values, or what is equivalent,
+    how much these values are concentrated. For instance, to analyze the
+    distribution of income or wealth, apart from the usual numerical and
+    graphical summaries, it could be useful to understand to what extent
+    the total sum of the values of the variable is concentrated in a few
+    cases. In industrial economics, the concentration of industries is an
+    important factor for the competition among firms. In this lesson we will
+    learn some basic inequality and concentration measures. We will use
+    a package called REAT, which has been already installed and enabled for
+    you, which contains all these measures.
+
+- Class: cmd_question
+  Output: Let's start with a simple example. We have created a data frame
+    called "friends" that contains the data for the wages of six friends.
+    Take a look at this data set with the head() function.
+  CorrectAnswer: head(friends)
+  AnswerTests: omnitest(correctExpr='head(friends)')
+  Hint: You have to enter "head(friends)" to see the first cases of the
+    variables included in the data frame "friends".
+
+- Class: cmd_question
+  Output: From the data we already see that there is quite a lot of
+    inequality between the wages of these friends. Jan earns significantly
+    more than the rest. The Gini index is very useful to analyze inequality.
+    The Lorenz curve also shows us the degree of inequality, and it is related
+    to the Gini measure. We can obtain the Gini inequality measure and
+    the Lorenz curve with the gini() and lorenz() functions of the REAT package.
+    The command to obtain the Gini index is gini(friends$wage,coefnorm=TRUE).
+    Try it now.
+  CorrectAnswer: gini(friends$wage,coefnorm=TRUE)
+  AnswerTests: gini(friends$wage,coefnorm=TRUE)
+  Hint: You have to enter "gini(friends$wage,coefnorm=TRUE)" to
+    obtain the Gini measure.
+
+- Class: cmd_question
+  Output: To represent the Lorenz curve we use the lorenz() function, that
+    takes as argument the vector of wages that we just used.
+  CorrectAnswer: lorenz(friends$wage)
+  AnswerTests: lorenz(friends$wage)
+  Hint: You have to enter "lorenz(friends$wage)" to
+    obtain the Lorenz curve.
+
+- Class: mult_question
+  Output: According to what you see in the Gini measure and the Lorenz curve,
+    which statement do you think is more appropriate?
+  AnswerChoices: there is inequality in the distribution of wages of the
+    friends, but it is not too high; there is no inequality in the distribution
+    of wages of the friends; there is extreme inequality in the distribution
+    of wages of the friends
+  CorrectAnswer: there is inequality in the distribution of wages of the
+    friends, but it is not too high
+  AnswerTests: omnitest(correctVal='there is inequality in the distribution of wages of the friends, but it is not too high')
+  Hint: As the Gini index is 0.5076923 and the Lorenz curve is fairly
+    separated from the diagonal, there is inequality, but considering the
+    value of the Gini index which is not too close to 1, and the Lorenz
+    curve which is not too close to the axis, there is not extreme inequality.
+    At the following example we will find a higher degree of inequality.
+
+- Class: text
+  Output: In the real world, income, wealth or wage data are usually
+    analyzed with a very large sample of individuals. Therefore the data
+    does not come in individual form as our previous simple example, but
+    as a frequency table, also called grouped data.
+
+- Class: figure
+  Output: Consider the figure on the right which shows world's wealth
+    distribution in 2017. We can see already in the picture that there
+    is a very large inequality in the distribution of wealth, as 70.1% of
+    the population only holds 3.9% of wealth, while 0.7% holds 46.3% of wealth
+    in the world.
+  Figure: figure_wealth.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: Let's measure this inequality with the Gini index and the Lorenz
+    curve. For this we have to prepare a frequency table for the wealth
+    distribution. We have prepared a data frame with these data.
+    Wealth is in dollars, and population is in millions.
+    Enter "Wealth_Data" to view it.
+  CorrectAnswer: Wealth_Data
+  AnswerTests: omnitest(correctExpr='Wealth_Data')
+  Hint: You have to enter "Wealth_Data" to view the frequency table for the
+    World Wealth data.
+
+- Class: cmd_question
+  Output: In order to analyze the data, we need to use the midpoints (class
+    marks) of the intervals of the previous table, as average wealth for each
+    interval. For the last interval, since it is "more than $1,000,000", we
+    need to put a reasonable value. Let's use 6000000, that is six million.
+    Create a vector with the midpoints of each interval and 6000000 for the
+    last interval, and assign the value to a vector called "x".
+  CorrectAnswer: x <- c(5000,55000,550000,6000000)
+  AnswerTests: omnitest(correctExpr='x <- c(5000,55000,550000,6000000)')
+  Hint: Enter "x <- c(5000,55000,550000,6000000)" for the midpoints of each
+    interval of wealth.
+
+- Class: cmd_question
+  Output: Since the data is grouped, and we do not have not individual data as
+    the first example, we need to also set the weights (frequency) for each
+    interval. Let's use the percentages of population in each wealth bracket
+    from the figure (70.1, 21.3, 7.9 and 0.7). Create now a vector with these
+    sample weights and call it "w".
+  CorrectAnswer: w <- c(70.1, 21.3,7.9,0.7)
+  AnswerTests: omnitest(correctExpr='w <- c(70.1, 21.3,7.9,0.7)')
+  Hint: Enter the information of the percentage of population of
+    each wealth interval, "w <- c(70.1, 21.3,7.9,0.7)".
+
+- Class: cmd_question
+  Output: We can now compute the Gini index, using
+    again the gini() function of the REAT package,
+    with gini(x,weighting=w). Try it now.
+  CorrectAnswer: gini(x,weighting=w)
+  AnswerTests: omnitest(correctExpr='gini(x,weighting=w)')
+  Hint: Compute the Gini index with "gini(x,weighting=w)".
+
+- Class: cmd_question
+  Output: To plot the Lorenz curve we use again the lorenz() function, and
+    the arguments are the same as for the previous gini() function.
+  CorrectAnswer: lorenz(x,weighting=w)
+  AnswerTests: omnitest(correctExpr='lorenz(x,weighting=w)')
+  Hint: Plot the Lorenz curve with "lorenz(x,weighting=w)".
+
+- Class: text
+  Output: As it can be seen both from the value of the Gini index and the
+    form of the Lorenz curve, there is a high degree of inequality in the
+    distribution of wealth worldwide.
+
+- Class: cmd_question
+  Output: A similar concept is concentration. Whenever there is inequality
+    in the distribution of values of a variable, there is concentration.
+    Concentration measures are used for the analysis of industries and
+    markets, where also measures such as the Gini index are employed. We
+    are going to work now with a data set on sales of four car
+    manufacturing firms, which have sales of 20, 50, 20 and 10 (in millions
+    of euros). Create a vector with these values and call it "sales".
+  CorrectAnswer: sales <- c(20,50,20,10)
+  AnswerTests: omnitest(correctExpr='sales <- c(20,50,20,10)')
+  Hint: Enter "sales <- c(20,50,20,10)" to create the demanded vector.
+
+- Class: cmd_question
+  Output: A well-known concentration measure is the Herfindahl-Hirschman
+    concentration measure. It is computed as the sum of the squares of the
+    sale shares of each firm. The REAT package has a function called herf()
+    that computes the Herfindahl index. It takes as argument a vector with
+    sales or any other variable that measures market share. Try it now with
+    the "sales" vector that we just created.
+  CorrectAnswer: herf(sales)
+  AnswerTests: omnitest(correctExpr='herf(sales)')
+  Hint: Enter "herf(sales)" to compute the Herfindahl-Hirschman concentration
+    index.
+
+- Class: text
+  Output: The value that we got for the Herfindahl-Hirschman concentration
+    measure, 0.34, is telling us that there is a fairly high concentration in
+    this market. Take into account that if all firms had exactly the same size
+    the index would be equal to 0.25 (each one has one fourth of the market),
+    and considering that there are only 4 firms in the market, that would
+    imply a fairly high degree of concentration. Here it is even a little bit
+    more concentrated because there a firm (the one with sales equal to
+    50 million euros) that has a 50% share of the market
+    (50/(20 + 50 + 20 + 10).
+
+- Class: text
+  Output: Here we have completed this lesson on the computation of inequality
+    and concentration measures and graphs with R.

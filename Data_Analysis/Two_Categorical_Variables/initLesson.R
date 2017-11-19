@@ -5,3 +5,4 @@ fans <- matrix(c(4,2,0,1,5,1,0,1,6),ncol=3, byrow=TRUE)
 colnames(fans) <- c("Barcelona","Madrid","Sevilla")
 rownames(fans) <- c("Barça","Real Madrid","Betis")
 fans <- as.table(fans)
+

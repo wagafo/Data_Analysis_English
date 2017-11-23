@@ -1,0 +1,220 @@
+- Class: meta
+  Course: Data analysis
+  Lesson: Index numbers
+  Author: Walter Garcia-Fontes
+  Type: Standard
+  Organization: Universitat Pompeu Fabra
+  Version: 1.0.0
+
+- Class: text
+  Output: To compare the evolution of a times series between different
+    periods in time, very often the tool of price indexs is used. When
+    there is only one series of prices, simple price indexs are used, that
+    is the percentage variation of the series, compared to a base period
+    which is equal to 100. But when there are a lot of series, and the
+    evolution of all these prices have to be analyzed together, it is
+    necessary to construct a complex or weighted price index. Very often
+    this tool is used to analyze the evolution over time of prices and
+    quantities. In this lesson we will construct complex or weighted
+    indexs with R.
+
+- Class: figure
+  Output: We will will work with a simple example. We have three products,
+    A, B and C, for which we have data on quantity sold and prices for
+    three years, 1997, 1998 and 1999. At the window on the right you have
+     a table with data for these three products. We have to enter the data
+     into R to analyze them. 
+  Figure: figure_dat.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: We have to first create vectors with prices and quantities. Let's
+    create these vector for product A. Create the vector for quantities
+    with 3 elements, one for each year, and give the name "q.A" to this
+    vector.
+  CorrectAnswer: q.A <- c(100,125,150)
+  AnswerTests: omnitest(correctExpr='q.A <- c(100,125,150)')
+  Hint: You have to enter "q.A <- c(100,125,150)" to create a vector with
+    three year of quantities for product A.
+
+- Class: cmd_question
+  Output: Create now a similar vector for the price of product A, and
+    call it "p.A".
+  CorrectAnswer: p.A <- c(10000,12500,13000)
+  AnswerTests: omnitest(correctExpr='p.A <- c(10000,12500,13000)')
+  Hint: Type "p.A <- c(10000,12500,13000)" to create a vector with the
+    three years of data for prices of product A.
+    
+- Class: cmd_question
+  Output: We should continue now creating vectors like these ones for
+    products B and C. We have created these vectors for you. Let's put
+    all these vectors q.A, p.A, q.B, p.B, q.C, p.C, in this order, in
+    a data frame with the function data.frame(). Give it the name "Data".
+  CorrectAnswer: Data <- data.frame(q.A, p.A, q.B, p.B, q.C, p.C)
+  AnswerTests: omnitest(correctExpr='Data <- data.frame(q.A, p.A, q.B, p.B, q.C, p.C)')
+  Hint: Write "Data <- data.frame(q.A, p.A, q.B, p.B, q.C, p.C)" to create
+    a data frame with the price and quantity vectors of products A, B and C.
+
+- Class: cmd_question
+  Output: To complete our data we will enter the names of the rows, that is
+    the years. We can do this with the rownames() function, that takes
+    as argument the data frame that we just created, and that hast to
+    get a vector assigned with the three years. Do it now.
+  CorrectAnswer: rownames(Data) <- c(1997,1998,1999)
+  AnswerTests: omnitest(correctExpr='rownames(Data) <- c(1997,1998,1999)')
+  Hint: You have to write rownames(Data) <- c(1997,1998,1999)» to give
+    a name to each row corresponding to the each year.
+
+- Class: cmd_question
+  Output: To check that we have entered the data correctly, write now "Data"
+    and compare the table that you have created with the data table of
+    the graph on the right window.
+  CorrectAnswer: Data
+  AnswerTests: omnitest(correctExpr='Data')
+  Hint: You have to enter "Data" to see how the data frame looks like.
+
+- Class: text
+  Output: When we have information on prices and quantities of different
+    products, we have to always enter the data in this format in order
+    to compute the price and quantity indexs, and we can do this with
+    the functions priceIndex() and quantityIndex() of the miEconIndex
+    package.
+
+- Class: cmd_question
+  Output: Let's compute first a complex or weighted Laspeyres index for the
+    prices of the three products. The syntax of the priceIndex() function is
+    priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100
+    where «1» stands for the year used as the base for the index. Try this
+    function now, and assign the result to "pL".
+  CorrectAnswer: pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100
+  AnswerTests: omnitest(correctExpr='pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100')
+  Hint: You have to enter "pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100" to compute a Laspeyres price index and assign
+    the result to "pL".
+
+- Class: cmd_question
+  Output: Check now the price index that you have computed by entering
+    the name of the object that you have created.
+  CorrectAnswer: pL
+  AnswerTests: omnitest(correctExpr='pL')
+  Hint: Type "pL" to see the object you have created.
+
+- Class: cmd_question
+  Output: The price index allows us to see that prices grow approximately
+    16% with respect to the base year the second year, and approximately
+    24% the third year. A useful way of checking the evolution of prices
+    is by using a time series plot of the index. We can get it with
+    "plot.ts(pL)". Get now this plot.
+  CorrectAnswer: plot.ts(pL)
+  AnswerTests: omnitest(correctExpr='plot.ts(pL)')
+  Hint: Enter "plot.ts(pL)" to see the time series plot of the Laspeyres
+    price index that we have computed.
+
+- Class: text
+  Output: To obtain a much nicer plot, use the ggplot2 package that has
+    more features and is more flexible than base R to create graphical
+    presentations.
+
+- Class: figure
+  Output: For instance, the plot that you have on your right window for
+    the Laspeyres price index was created with the command
+    qplot(x=rownames(Data),y=pL,xlab="Year",ylab="Laspeyres Price Index", main="Price Index Plot") + geom_line(aes(group=1)).
+  Figure: figure_pL.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: To obtain a Paasche index, we have just to add "Paasche" as the
+    last argument of the priceIndex() function, that is 
+    priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100. Try this command now.
+  CorrectAnswer: priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100
+  AnswerTests: omnitest(correctExpr='priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100')
+  Hint: Write "priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100" to compute the Paasche price index.
+
+- Class: cmd_question
+  Output: A quantity price index can be also of the Laspeyres or Paasche type,
+    and can be obtained with the quantityIndex() function, which has a similar
+    syntax to the priceIndex() function. We compute a quantity index of the
+    Fisher type, which is computed as a geometric mean of the Laspeyres and
+    Paasche index, and with the second year as base, with
+    quantityIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 2, Data,"Fisher")*100. Try this command now.
+  CorrectAnswer: quantityIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 2, Data,"Fisher")*100
+  AnswerTests: omnitest(correctExpr='quantityIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 2, Data,"Fisher")*100')
+  Hint: Type "quantityIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 2, Data,"Fisher")*100" to compute a Fisher quantity index with the base fixed
+     at the second year.
+
+- Class: figure
+  Output: In practical terms, prices indexs are computed using weights
+    for each product based on their share in the total value of all products,
+    and as a weighted mean of simple price indexs for each product. At the
+    table in the right window, you can see this type of data, based on the
+    same example that we used before. Let's assume that we want to compute
+    a Laspeyres, Paasche or Fisher index with the base in the first year like
+    before. At the table, we already have the computed weights and simple
+    price indexs for the three products.
+  Figure: figure_pond.R
+  FigureType: new    
+
+- Class: cmd_question
+  Output: We have to enter now the data for this procedure. We have already
+    created vectors called pi.A, pi.B, pi.C, w.A, w.B, w.C for the simple
+    price indexs and weights. Create a data frame with these vectors, in
+    the same order as they are given above, using the data.frame() function,
+    and assign the result to an object called "Data2".
+  CorrectAnswer: Data2 <- data.frame(pi.A, pi.B, pi.C, w.A, w.B, w.C)
+  AnswerTests: omnitest(correctExpr='Data2 <- data.frame(pi.A, pi.B, pi.C, w.A, w.B, w.C)')
+  Hint: Enter "Data2 <- data.frame(pi.A, pi.B, pi.C, w.A, w.B, w.C)" to
+    enter the data to compute the weighted price index.
+  
+- Class: cmd_question
+  Output: Assign as before the names of the year to each row with the
+    rownames() function.
+  CorrectAnswer: rownames(Data2) <- c(1997,1998,1999)
+  AnswerTests: omnitest(correctExpr='rownames(Data2) <- c(1997,1998,1999)')
+  Hint: Type "rownames(Data2) <- c(1997,1998,1999)" to assign the year to
+    the rows.
+
+- Class: cmd_question
+  Output: Check the aspect of the data frame that you have created by
+   typing its name.
+  CorrectAnswer: Data2
+  AnswerTests: omnitest(correctExpr='Data2')
+  Hint: Enter "Data2" to see the data frame that you have created.
+
+- Class: cmd_question
+  Output: To compute a Paasche index, where the weights used correspond to
+    the current years, we use the command
+    apply(Data2, 1, function(x)  weighted.mean(x[1:3],x[4:6])). Try it.
+  CorrectAnswer: apply(Data2, 1, function(x) weighted.mean(x[1:3],x[4:6]))
+  AnswerTests: calculates_same_value='apply(Data2, 1, function(x) weighted.mean(x[1:3],x[4:6]))'
+  Hint: Enter "apply(Data2, 1, function(x) weighted.mean(x[1:3],x[4:6]))"
+    to compute the Paasche price index and the simple price indexs and
+    the weights.
+
+- Class: cmd_question
+  Output: To compute the Laspeyres price index, we have to keep the
+    weights fixed in the base year. We have created a data frame with
+    base year fixed weights so that you can see how it looks like, and
+    how the data should be entered. Type "Data3" to see it.
+  CorrectAnswer: Data3
+  AnswerTests: omnitest(correctExpr='Data3')
+  Hint: Type «Data3» to see the data frame with the weights fixed to the
+    the base year.
+
+- Class: cmd_question
+  Output: Now we can use again the same command that we used before to compute
+    the weighted price index, with the "Data3" data frame, 
+    apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6])). Enter this
+    command and compute a Laspeyres price index.
+  CorrectAnswer: apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6]))
+  AnswerTests: calculates_same_value='apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6]))'
+  Hint: Type "apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6]))"
+    to compute the Paasche index with the simple indexs and the weights.
+
+- Class: text
+  Output: If you remember the values that we obtained for the Laspeyres
+    and Paasche index with the first procedure. you can see that they are
+    the same using this second procedure, which is the one used in practical
+    applications, since usually we do not have information on quantities of
+    goods and services, we just have information on values to compute the
+    weights. Here we finish this lesson on how to compute index numbers with
+    R.
+    

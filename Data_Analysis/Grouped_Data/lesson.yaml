@@ -92,11 +92,11 @@
   Output: Apart from the five summary numbers, we can get the mean and the
     standard deviation for the variable in the frequency table. To obtain
     the mean for the value of claims in the dental claim data set, the
-    command is "emm(gdental,order=1)". Enter this command now to obtain
+    command is "mean(gdental)". Enter this command now to obtain
     the mean in this data set.
-  CorrectAnswer: emm(gdental,order=1)
-  AnswerTests: omnitest(correctExpr='emm(gdental,order=1)')
-  Hint: You have to enter "emm(gdental,order=1)" to obtain the mean for
+  CorrectAnswer: mean(gdental)
+  AnswerTests: omnitest(correctExpr='mean(gdental)')
+  Hint: You have to enter "mean(gdental)" to obtain the mean for
     dental insurance claims.
 
 - Class: video
@@ -106,13 +106,13 @@
 - Class: cmd_question
   Output: For the standard deviation the command is more complicated,
     since the actuar package does not provide a direct function to compute
-    it. The command is
-    "sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)". Enter
+    it. The command to obtain an approximate standard deviation is
+    "sqrt(emm(gdental,order=2) - mean(gdental)^2)". Enter
     now this command to compute the standard deviation for the value of
     claims, that is a measure of the variation around the mean.
-  CorrectAnswer: sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)
-  AnswerTests: omnitest(correctExpr='sqrt(emm(gdental,order=2)-emm(gdental,order=1)^2)')
-  Hint: You have to enter "sqrt(emm(gdental,order=2) - emm(gdental,order=1)^2)" to compute the standard deviation of claims.
+  CorrectAnswer: sqrt(emm(gdental,order=2) - mean(gdental)^2)
+  AnswerTests: omnitest(correctExpr='sqrt(emm(gdental,order=2)-mean(gdental)^2)')
+  Hint: You have to enter "sqrt(emm(gdental,order=2) - mean(gdental)^2)" to compute the standard deviation of claims.
 
 
 - Class: cmd_question

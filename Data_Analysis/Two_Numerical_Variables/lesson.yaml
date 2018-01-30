@@ -430,7 +430,7 @@
 
 - Class: mult_question
   Output: The residual plot shows
-  AnswerChoices: a possible non-linear association; a possible linear assotiation
+  AnswerChoices: a possible non-linear association; a possible linear association
   CorrectAnswer: a possible non-linear association
   AnswerTests: omnitest(correctVal='a possible non-linear association')
   Hint: For low values of X the residuals are positive, for intermediate values

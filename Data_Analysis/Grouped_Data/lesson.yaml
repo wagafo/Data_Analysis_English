@@ -81,12 +81,13 @@
     the median (50%), the third quartile (75%) and the maximum (100%).
     We can also plot a boxplot with these summary numbers. For this we
     have to provide the result of the quantile() function to the
-    boxplot() function, and the command is "boxplot(quantile(gdental))".
-    Enter now this command to obtain a boxplot of the gdental grouped
-    object.
-  CorrectAnswer: boxplot(quantile(gdental))
-  AnswerTests: omnitest(correctExpr='boxplot(quantile(gdental))')
-  Hint: You have to enter "boxplot(quantile(gdental))".
+    boxplot() function, and the command is "boxplot(quantile(gdental),range=0)".
+    We add the argument "range=0" so that the whiskers arrive to the maximum
+    and the minimum.  Enter now this command to obtain a boxplot of
+    the gdental grouped object.
+  CorrectAnswer: boxplot(quantile(gdental),range=0)
+  AnswerTests: omnitest(correctExpr='boxplot(quantile(gdental),range=0)')
+  Hint: You have to enter "boxplot(quantile(gdental),range=0)".
 
 - Class: cmd_question
   Output: Apart from the five summary numbers, we can get the mean and the

@@ -69,7 +69,7 @@
 - Class: text
   Output: As we can see at the time series plot, the time series has
     an increasing trend in sales. There is also a strong seasonality,
-    during the first and fourth quarters the series i below the trend,
+    during the first and fourth quarters the series is below the trend,
     while at the second and third quarters the series is above the trend.
     Furthermore, we see that an additive model can be appropriate for this
     series, since the seasonal components have always approximately the
@@ -150,7 +150,7 @@
   Output: Taking into account that the seasonal component is the same value
     for a given quarter, we only need 4 values. We can see them for the
     4 quarter with "decomp.ts$figure", in order, quarter 1, 2, 3 and 4.
-    Enter this order now.
+    Enter this command now.
   CorrectAnswer: decomp.ts$figure
   AnswerTests: omnitest(correctExpr='decomp.ts$figure')
   Hint: Write "decomp.ts$figure" to see the four seasonal components.

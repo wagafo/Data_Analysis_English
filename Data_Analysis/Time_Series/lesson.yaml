@@ -141,7 +141,7 @@
     from the series and getting rid of the irregular components (using
     that the mean of the irregular component is equal to 0 in the additive
     model, and equal to 1 in the multiplicative model). To see the seasonal
-    component, we can enter "decomp.ts$seasonal". Write it now.
+    component, we can enter "decomp.ts$seasonal". Enter it now.
   CorrectAnswer: decomp.ts$seasonal
   AnswerTests: omnitest(correctExpr='decomp.ts$seasonal')
   Hint: Write "decomp.ts$seasonal" to see the seasonal component series.

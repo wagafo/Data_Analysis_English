@@ -23,7 +23,7 @@
 # the evaluate() function will return the result of dat being passed as an
 # argument to func.
 #
-# Hints: This exercise is a little tricky so I'll provide a few example of how
+# Hints: This exercise is a little tricky so I'll provide a few examples of how
 # evaluate() should act:
 #    1. evaluate(sum, c(2, 4, 6)) should evaluate to 12
 #    2. evaluate(median, c(7, 40, 9)) should evaluate to 9

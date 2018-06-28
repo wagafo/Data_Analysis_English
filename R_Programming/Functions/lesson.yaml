@@ -193,10 +193,10 @@
 
 - Class: cmd_question
   Output: "Let's take your new evaluate() function for a spin! Use evaluate to 
-    find the standard deviation of the vector c(1.4, 3.6, 7.9, 8.8)."
-  CorrectAnswer: evaluate(sd, c(1.4, 3.6, 7.9, 8.8))
-  AnswerTests: omnitest(correctExpr='evaluate(sd, c(1.4, 3.6, 7.9, 8.8))')
-  Hint: "The function for standard deviation is called sd(). Make sure that when
+    find the median of the vector c(1.4, 3.6, 7.9, 8.8)."
+  CorrectAnswer: evaluate(median, c(1.4, 3.6, 7.9, 8.8))
+  AnswerTests: omnitest(correctExpr='evaluate(median, c(1.4, 3.6, 7.9, 8.8))')
+  Hint: "The function for standard deviation is called median(). Make sure that when
     you pass a function as an argument you pass the
     name of the function without parentheses!"
 

@@ -8,7 +8,7 @@
 
 - Class: text
   Output: To understand the distribution of some variables it is useful to
-    measure the degree of inequality of its values, or what is equivalent,
+    measure the degree of inequality of its values, or equivalently,
     how much these values are concentrated. For instance, to analyze the
     distribution of income or wealth, apart from the usual numerical and
     graphical summaries, it could be useful to understand to what extent
@@ -17,7 +17,7 @@
     important factor for the competition among firms. In this lesson we will
     learn some basic inequality and concentration measures. We will use
     a package called REAT, which has been already installed and enabled for
-    you, which contains all these measures.
+    you, that contains all these measures.
 
 - Class: cmd_question
   Output: Let's start with a simple example. We have created a data frame
@@ -105,7 +105,7 @@
     interval of wealth.
 
 - Class: cmd_question
-  Output: Since the data is grouped, and we do not have not individual data as
+  Output: Since the data is grouped, and we do not have individual data as in
     the first example, we need to also set the weights (frequency) for each
     interval. Let's use the percentages of population in each wealth bracket
     from the figure (70.1, 21.3, 7.9 and 0.7). Create now a vector with these
@@ -166,7 +166,7 @@
     the index would be equal to 0.25 (each one has one fourth of the market),
     and considering that there are only 4 firms in the market, that would
     imply a fairly high degree of concentration. Here it is even a little bit
-    more concentrated because there a firm (the one with sales equal to
+    more concentrated because there is a firm (the one with sales equal to
     50 million euros) that has a 50% share of the market
     (50/(20 + 50 + 20 + 10).
 

@@ -12,24 +12,24 @@
     there is only one series of prices, simple price indexs are used, that
     is the percentage variation of the series, compared to a base period
     which is equal to 100. But when there are a lot of series, and the
-    evolution of all these prices have to be analyzed together, it is
+    evolution of all these prices has to be analyzed jointly, it is
     necessary to construct a complex or weighted price index. Very often
     this tool is used to analyze the evolution over time of prices and
     quantities. In this lesson we will construct complex or weighted
     indexs with R.
 
 - Class: figure
-  Output: We will will work with a simple example. We have three products,
+  Output: We will work with a simple example. We have three products,
     A, B and C, for which we have data on quantity sold and prices for
     three years, 1997, 1998 and 1999. At the window on the right you have
      a table with data for these three products. We have to enter the data
-     into R to analyze them. 
+     into R to analyze them.
   Figure: figure_dat.R
   FigureType: new
 
 - Class: cmd_question
   Output: We have to first create vectors with prices and quantities. Let's
-    create these vector for product A. Create the vector for quantities
+    create these vectors for product A. Create the vector for quantities
     with 3 elements, one for each year, and give the name "q.A" to this
     vector.
   CorrectAnswer: q.A <- c(100,125,150)
@@ -44,7 +44,7 @@
   AnswerTests: omnitest(correctExpr='p.A <- c(10000,12500,13000)')
   Hint: Type "p.A <- c(10000,12500,13000)" to create a vector with the
     three years of data for prices of product A.
-    
+
 - Class: cmd_question
   Output: We should continue now creating vectors like these ones for
     products B and C. We have created these vectors for you. Let's put
@@ -57,13 +57,13 @@
 
 - Class: cmd_question
   Output: To complete our data we will enter the names of the rows, that is
-    the years. We can do this with the rownames() function, that takes
-    as argument the data frame that we just created, and that hast to
-    get a vector assigned with the three years. Do it now.
+    the years. We can do this with the rownames() function, which takes
+    as an argument the data frame that we just created, and we assign
+    a vector with the three years to it. Do it now.
   CorrectAnswer: rownames(Data) <- c(1997,1998,1999)
   AnswerTests: omnitest(correctExpr='rownames(Data) <- c(1997,1998,1999)')
-  Hint: You have to write rownames(Data) <- c(1997,1998,1999)» to give
-    a name to each row corresponding to the each year.
+  Hint: You have to write «rownames(Data) <- c(1997,1998,1999)» to give
+    a name to each row corresponding to each year.
 
 - Class: cmd_question
   Output: To check that we have entered the data correctly, write now "Data"
@@ -123,7 +123,7 @@
 
 - Class: cmd_question
   Output: To obtain a Paasche index, we have just to add "Paasche" as the
-    last argument of the priceIndex() function, that is 
+    last argument of the priceIndex() function, that is
     priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100. Try this command now.
   CorrectAnswer: priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100
   AnswerTests: omnitest(correctExpr='priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data,"Paasche")*100')
@@ -151,7 +151,7 @@
     before. At the table, we already have the computed weights and simple
     price indexs for the three products.
   Figure: figure_pond.R
-  FigureType: new    
+  FigureType: new
 
 - Class: cmd_question
   Output: We have to enter now the data for this procedure. We have already
@@ -163,7 +163,7 @@
   AnswerTests: omnitest(correctExpr='Data2 <- data.frame(pi.A, pi.B, pi.C, w.A, w.B, w.C)')
   Hint: Enter "Data2 <- data.frame(pi.A, pi.B, pi.C, w.A, w.B, w.C)" to
     enter the data to compute the weighted price index.
-  
+
 - Class: cmd_question
   Output: Assign as before the names of the year to each row with the
     rownames() function.
@@ -201,7 +201,7 @@
 
 - Class: cmd_question
   Output: Now we can use again the same command that we used before to compute
-    the weighted price index, with the "Data3" data frame, 
+    the weighted price index, with the "Data3" data frame,
     apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6])). Enter this
     command and compute a Laspeyres price index.
   CorrectAnswer: apply(Data3, 1, function(x) weighted.mean(x[1:3],x[4:6]))
@@ -217,4 +217,3 @@
     goods and services, we just have information on values to compute the
     weights. Here we finish this lesson on how to compute index numbers with
     R.
-    

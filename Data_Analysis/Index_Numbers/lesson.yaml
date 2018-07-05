@@ -84,8 +84,10 @@
   Output: Let's compute first a complex or weighted Laspeyres index for the
     prices of the three products. The syntax of the priceIndex() function is
     priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100
-    where «1» stands for the year used as the base for the index. Try this
-    function now, and assign the result to "pL".
+    where «1» stands for the year used as the base for the index. If nothing
+    is specified, it is assumed that index is of the Laspeyres type. Try this
+    function now, to compute a Laspeyres Price Index, and assign the result
+    to "pL".
   CorrectAnswer: pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100
   AnswerTests: omnitest(correctExpr='pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100')
   Hint: You have to enter "pL <- priceIndex( c( "p.A", "p.B", "p.C" ),c( "q.A", "q.B", "q.C" ), 1, Data)*100" to compute a Laspeyres price index and assign

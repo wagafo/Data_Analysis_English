@@ -31,5 +31,7 @@
 # "START Good morning STOP"
 
 telegram <- function(...){
+  # Write your code here!
+  # Remember: the last expression evaluated will be returned!       
   paste("START", ..., "STOP")
 }

@@ -117,9 +117,9 @@
     the command to round the "pounds" variable to two decimal positions, and
     assign the result to the same variable in the same data frame,
     "new_trip$pounds".
-  CorrectAnswer: new_trip$pounds <- round(pounds,2)
-  AnswerTests: swirl1cmd= new_trip$pounds <- round(pounds,2)
-  Hint: You have to enter "new_trip$pounds <- round(pounds,2)" to
+  CorrectAnswer: new_trip$pounds <- round(new_trip$pounds,2)
+  AnswerTests: swirl1cmd= new_trip$pounds <- round(new_trip$pounds,2)
+  Hint: You have to enter "new_trip$pounds <- round(new_trip$pounds,2)" to
     round the pound data to two decimal position, and to save the results
     under the same  data frame with the same variable name.
 

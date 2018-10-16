@@ -294,12 +294,14 @@
   Script: mad_libs.R
 
 - Class: cmd_question
-  Output: "Time to use your mad_libs function. Make sure to name the place, 
-    adjective, and noun arguments in order for your function to work."
+  Output: "Time to use your mad_libs function. Make sure to name the
+  place (place=...),  adjective (adjective=...) , and noun (noun=...)
+  arguments in order for your function to work."
   CorrectAnswer: mad_libs(adjective = "", place = "", noun = "")
   AnswerTests: expr_uses_func('mad_libs')
   Hint: 'Use the mad_libs function and be sure to name place, adjective, and 
-  noun arguments.'
+    noun arguments, in this order and naming the variables with
+    place=... and so on.'
 
 - Class: text
   Output: "We're coming to the end of this lesson, but there's still one more

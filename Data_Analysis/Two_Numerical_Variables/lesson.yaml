@@ -177,9 +177,9 @@
 
 - Class: mult_question
   Output: The slope is showing us
-  AnswerChoices: that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final; that for each point a student gets in the final, it is predicted he or she got 1.12 points in the midterm
-  CorrectAnswer: that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final
-  AnswerTests: omnitest(correctVal='that for each point a student gets in the midterm, it is predicted he or she will get 1.12 points in the final')
+  AnswerChoices: that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final; that for each point a student gets in the final, it is predicted he or she got 1.127 points in the midterm
+  CorrectAnswer: that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final
+  AnswerTests: omnitest(correctVal='that for each point a student gets in the midterm, it is predicted he or she will get 1.127 points in the final')
   Hint: The regression line predicts the effect of the explanatory variable
    (grade in the midterm) on the dependent variable (grade in the final).
 
@@ -235,8 +235,8 @@
 - Class: text
   Output: In the results shown by R you can see again the regression
     coefficients under "Estimate". You can also get the value for coefficient
-    of determination (also called R-squared), which is equal to 0.41. and
-    some statistics for the regression residuals.
+    of determination (also called Multiple R-squared), which is equal
+    to 0.41. and some statistics for the regression residuals.
 
 - Class: mult_question
   Output: The value of the R-squared is telling you that

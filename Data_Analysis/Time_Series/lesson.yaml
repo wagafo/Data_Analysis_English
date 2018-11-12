@@ -263,7 +263,7 @@
     components are combined by multiplications, Y = T*S*I. Therefore
     instead of sums and differences, the procedures imply multiplications and
     divisions. We have created another quarterly time series with seasonal
-    movements that the larger over time, and we have saved it in a series
+    movements that are amplified over time, and we have saved it in a series
     called "series2". Decompose the series using the decompose() function,
     and specify that the model is multiplicative with 'type="multiplicative"'.
     Assign the result to "series2.d".

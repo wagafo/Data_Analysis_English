@@ -149,7 +149,10 @@
 - Class: cmd_question
   Output: Taking into account that the seasonal component is the same value
     for a given quarter, we only need 4 values. We can see them for the
-    4 quarter with "decomp.ts$figure", in order, quarter 1, 2, 3 and 4.
+    4 quarter with "decomp.ts$figure", in order from the beginning of
+    the series, first quarter, second quarter, third quarter and
+    fourth quarter (if the series does not start in quarter 1, this
+    would show the first quarter available in the series).
     Enter this command now.
   CorrectAnswer: decomp.ts$figure
   AnswerTests: omnitest(correctExpr='decomp.ts$figure')

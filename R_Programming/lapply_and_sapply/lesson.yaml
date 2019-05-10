@@ -223,7 +223,11 @@
   Output: Pretend you are interested in only the second item from each element of the unique_vals list that you just created. Since each element of the unique_vals list is a vector and we're not aware of any built-in function in R that returns the second element of a vector, we will construct our own function.
 
 - Class: cmd_question
-  Output: lapply(unique_vals, function(elem) elem[2]) will return a list containing the second item from each element of the unique_vals list. Note that our function takes one argument, elem, which is just a 'dummy variable' that takes on the value of each element of unique_vals, in turn.
+  Output: lapply(unique_vals, function(elem) elem[2]) will return a
+    list containing the second item from each element of the unique_vals
+    list. Note that our function takes one argument, elem, which is just
+    a 'dummy variable' that takes on the value of each element of
+    unique_vals, in turn. Enter now this expression.
   CorrectAnswer: lapply(unique_vals, function(elem) elem[2])
   AnswerTests: calculates_same_value('lapply(unique_vals, function(elem) elem[2])')
   Hint: Use lapply(unique_vals, function(elem) elem[2]) to return a list containing the second item from each element of the unique_vals list.

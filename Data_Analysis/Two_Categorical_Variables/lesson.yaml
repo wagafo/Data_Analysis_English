@@ -49,7 +49,7 @@
     joint distribution of the "county" and "transport" variables.
 
 - Class: cmd_question
-  Output: We can also show the joint distribution in graphical form wit
+  Output: We can also show the joint distribution in graphical form with
     a bar plot. We can obtain a bar plot with the barplot() function.
     The first argument is the table object, and it can have several
     arguments. Try now for instance barplot(dist,legend=TRUE) to obtain

@@ -87,7 +87,7 @@
     joint distribution between the "county" and "transport" variables.
 
 - Class: cmd_question
-  Output: We can obtatin the marginal distribution of the row variable
+  Output: We can obtain the marginal distribution of the row variable
     (in this case "county") using the margin.table() function. It has
     two arguments, the first one is the table (we can use "dist") and
     the second is 1 for the row variable. Get now the marginal distribution
@@ -210,21 +210,21 @@
     and "city of residence" variables.
 
 - Class: cmd_question
-  Output: We first have to enter the relative frequency of the joint
+  Output: We first have to enter the absolute frequency of the joint
     distribution. We create a vector with the c() function, and we
     have to enter the frequency along the rows, that is
     c(4,2,0,1,5,1,0,1,6). Assign the result to an object called "freq".
     Do it now.
   CorrectAnswer: freq <- c(4,2,0,1,5,1,0,1,6)
   AnswerTests: omnitest(correctExpr='freq <- c(4,2,0,1,5,1,0,1,6)')
-  Hint: Entreu «freq <- c(4,2,0,1,5,1,0,1,6)» per veure la taula de
-    contingència de les variables.
+  Hint: Enter "freq <- c(4,2,0,1,5,1,0,1,6)" to enter the absolute
+    frequency of the joint distribution.
 
 - Class: cmd_question
   Output: Next, we create a table based on the frequency we have saved
     in the previous command, with the use of the matrix() function.
     We have to specify three columns (ncol=3) and that the data
-    has been entered along the rowss (byrow=TRUE). Furthermore, we have
+    has been entered along the rows (byrow=TRUE). Furthermore, we have
     to tell R that the type of this object is "table". This is the final
     command, as.table(matrix(freq, ncol=3, byrow=TRUE)). Create now this
     table object and assign it to an object called "mytable".

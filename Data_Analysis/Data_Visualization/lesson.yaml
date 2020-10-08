@@ -179,7 +179,7 @@
 
 - Class: figure
   Output: I have created a stem-and-leaf plot above using the same values for the
-    'mpgCity' variable as we just used for our histogram. As you can see, a stem-and-leaf
+    'mpg_city' variable as we just used for our histogram. As you can see, a stem-and-leaf
     plot is a useful type of histogram if you want to see the frequencies of specific
     values of the data. Often, there will only be one bin per tens digit, but in this
     case, R gives us the same bins as we saw in our histogram.

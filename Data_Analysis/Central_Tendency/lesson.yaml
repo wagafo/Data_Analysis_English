@@ -103,27 +103,27 @@
 - Class: text
   Output: 'You''ll notice the rows are numbered 1 through 54, each representing exactly
     one car in the dataset. For each car, the following VARIABLES, or characteristics,
-    are reported: ''type'' (small, midsize, large), ''price'' (USD), ''mpgCity'' (city
+    are reported: ''type'' (small, midsize, large), ''price'' (USD), ''mpg_city'' (city
     miles per gallon), ''driveTrain'' (4WD, front, rear), ''passengers'' (total capacity),
     and ''weight'' (lbs). '
 
 - Class: text
-  Output: We'll be focusing on the 'mpgCity' variable in this lesson. For simplicity,
+  Output: We'll be focusing on the 'mpg_city' variable in this lesson. For simplicity,
     let's extract it from our dataset and store it in a new variable.
 
 - Class: cmd_question
-  Output: Access the 'mpgCity' variable from the 'cars' dataset using the 'dataset$variable'
+  Output: Access the 'mpg_city' variable from the 'cars' dataset using the 'dataset$variable'
     notation.
-  CorrectAnswer: cars$mpgCity
-  AnswerTests: equivalent=cars$mpgCity
+  CorrectAnswer: cars$mpg_city
+  AnswerTests: equivalent=cars$mpg_city
   Hint: Use 'dataset$variable' notation. Remember the name of our dataset is 'cars'
-    and the name of the variable we are interested in is 'mpgCity'.
+    and the name of the variable we are interested in is 'mpg_city'.
 
 - Class: cmd_question
-  Output: Now store the contents of the 'cars$mpgCity' in a new variable called 'myMPG'.
-  CorrectAnswer: myMPG <- cars$mpgCity
-  AnswerTests: newcmd=myMPG <- cars$mpgCity
-  Hint: Use the assignment operator to assign 'cars$mpgCity' to a new variable called
+  Output: Now store the contents of the 'cars$mpg_city' in a new variable called 'myMPG'.
+  CorrectAnswer: myMPG <- cars$mpg_city
+  AnswerTests: newcmd=myMPG <- cars$mpg_city
+  Hint: Use the assignment operator to assign 'cars$mpg_city' to a new variable called
     'myMPG'.
 
 - Class: text
@@ -196,4 +196,3 @@
     basic concepts related to data and data analysis. Specifically, you learned three
     important measures of central tendency: mean, median, and mode. You also know
     how to compute these using R.'
-
